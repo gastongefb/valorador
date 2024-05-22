@@ -13,7 +13,7 @@
               Planes de Estudio
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="http://localhost/framework_ci4_ministerio/public/mostrarPlanes">Listado de Planes de Estudio</a></li>
+              <li><a class="dropdown-item" href="/public/mostrarPlanes">Listado de Planes de Estudio</a></li>
               <li><a class="dropdown-item" href="#">Cargar Plan de Estudio</a></li>
 
 
