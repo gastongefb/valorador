@@ -1,6 +1,7 @@
 
 
 <div class="jumbotron">
+
       <h2 class="text-center">Resolución 1410-ME-2018</h2>
       <p>Ayuda y guía con la Res. 1410-ME-2018 para la valoración de antecedentes:</p>
       <p>(Deslice el mouse sobre la imagen en miniatura abajo de la imagen principal, para cargar la información correspondiente sobre el valorador)</p>
@@ -28,5 +29,4 @@
       <a href="http://localhost/framework_ci4_ministerio/public/">
         <button type="button" class="btn btn-secondary">Volver</button>
       </a>
-
     </div>
