@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 20, 2024 at 04:18 AM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 28-05-2024 a las 22:23:54
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `valorador`
+-- Base de datos: `valorador`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `antecedentes_docentes`
+-- Estructura de tabla para la tabla `antecedentes_docentes`
 --
 
 CREATE TABLE `antecedentes_docentes` (
@@ -33,10 +33,10 @@ CREATE TABLE `antecedentes_docentes` (
   `detalle_ant_doc` varchar(100) NOT NULL,
   `fecha` date NOT NULL,
   `id_detalle_doc` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `antecedentes_docentes`
+-- Volcado de datos para la tabla `antecedentes_docentes`
 --
 
 INSERT INTO `antecedentes_docentes` (`id_ant_doc`, `id_valoracion`, `detalle_ant_doc`, `fecha`, `id_detalle_doc`) VALUES
@@ -48,7 +48,7 @@ INSERT INTO `antecedentes_docentes` (`id_ant_doc`, `id_valoracion`, `detalle_ant
 -- --------------------------------------------------------
 
 --
--- Table structure for table `antecedentes_laborales`
+-- Estructura de tabla para la tabla `antecedentes_laborales`
 --
 
 CREATE TABLE `antecedentes_laborales` (
@@ -57,10 +57,10 @@ CREATE TABLE `antecedentes_laborales` (
   `detalle_ant_lab` varchar(50) NOT NULL,
   `fecha` int(11) NOT NULL,
   `id_detalle_lab` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `antecedentes_laborales`
+-- Volcado de datos para la tabla `antecedentes_laborales`
 --
 
 INSERT INTO `antecedentes_laborales` (`id_ant_lab`, `id_valoracion`, `detalle_ant_lab`, `fecha`, `id_detalle_lab`) VALUES
@@ -69,7 +69,7 @@ INSERT INTO `antecedentes_laborales` (`id_ant_lab`, `id_valoracion`, `detalle_an
 -- --------------------------------------------------------
 
 --
--- Table structure for table `capacitacion`
+-- Estructura de tabla para la tabla `capacitacion`
 --
 
 CREATE TABLE `capacitacion` (
@@ -78,10 +78,10 @@ CREATE TABLE `capacitacion` (
   `detalle_capacitacion` varchar(100) NOT NULL,
   `fecha` date NOT NULL,
   `id_detalle_capacitacion` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `capacitacion`
+-- Volcado de datos para la tabla `capacitacion`
 --
 
 INSERT INTO `capacitacion` (`id_capacitacion`, `id_valoracion`, `detalle_capacitacion`, `fecha`, `id_detalle_capacitacion`) VALUES
@@ -100,16 +100,16 @@ INSERT INTO `capacitacion` (`id_capacitacion`, `id_valoracion`, `detalle_capacit
 -- --------------------------------------------------------
 
 --
--- Table structure for table `carreras`
+-- Estructura de tabla para la tabla `carreras`
 --
 
 CREATE TABLE `carreras` (
   `id_carrera` int(11) NOT NULL,
   `nombre_carrera` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `carreras`
+-- Volcado de datos para la tabla `carreras`
 --
 
 INSERT INTO `carreras` (`id_carrera`, `nombre_carrera`) VALUES
@@ -119,16 +119,16 @@ INSERT INTO `carreras` (`id_carrera`, `nombre_carrera`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `condicion_docente`
+-- Estructura de tabla para la tabla `condicion_docente`
 --
 
 CREATE TABLE `condicion_docente` (
   `id_condicion` int(11) NOT NULL,
   `detalle_condicion` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `condicion_docente`
+-- Volcado de datos para la tabla `condicion_docente`
 --
 
 INSERT INTO `condicion_docente` (`id_condicion`, `detalle_condicion`) VALUES
@@ -138,17 +138,17 @@ INSERT INTO `condicion_docente` (`id_condicion`, `detalle_condicion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detalle_ant_doc`
+-- Estructura de tabla para la tabla `detalle_ant_doc`
 --
 
 CREATE TABLE `detalle_ant_doc` (
   `id_detalle_doc` int(11) NOT NULL,
   `detalle_ant_doc` varchar(100) NOT NULL,
   `puntaje` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `detalle_ant_doc`
+-- Volcado de datos para la tabla `detalle_ant_doc`
 --
 
 INSERT INTO `detalle_ant_doc` (`id_detalle_doc`, `detalle_ant_doc`, `puntaje`) VALUES
@@ -159,17 +159,17 @@ INSERT INTO `detalle_ant_doc` (`id_detalle_doc`, `detalle_ant_doc`, `puntaje`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detalle_ant_lab`
+-- Estructura de tabla para la tabla `detalle_ant_lab`
 --
 
 CREATE TABLE `detalle_ant_lab` (
   `id_detalle_lab` int(11) NOT NULL,
   `detalle_ant_lab` varchar(100) NOT NULL,
   `puntaje` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `detalle_ant_lab`
+-- Volcado de datos para la tabla `detalle_ant_lab`
 --
 
 INSERT INTO `detalle_ant_lab` (`id_detalle_lab`, `detalle_ant_lab`, `puntaje`) VALUES
@@ -179,17 +179,17 @@ INSERT INTO `detalle_ant_lab` (`id_detalle_lab`, `detalle_ant_lab`, `puntaje`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detalle_capacitacion`
+-- Estructura de tabla para la tabla `detalle_capacitacion`
 --
 
 CREATE TABLE `detalle_capacitacion` (
   `id_detalle_capacitacion` int(11) NOT NULL,
   `detalle` varchar(50) NOT NULL,
   `puntaje` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `detalle_capacitacion`
+-- Volcado de datos para la tabla `detalle_capacitacion`
 --
 
 INSERT INTO `detalle_capacitacion` (`id_detalle_capacitacion`, `detalle`, `puntaje`) VALUES
@@ -203,16 +203,54 @@ INSERT INTO `detalle_capacitacion` (`id_detalle_capacitacion`, `detalle`, `punta
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dynamic_inputs_table`
+-- Estructura de tabla para la tabla `docente`
+--
+
+CREATE TABLE `docente` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `apellido` varchar(200) NOT NULL,
+  `dni` varchar(10) NOT NULL,
+  `mail` varchar(100) NOT NULL,
+  `estado` int(11) NOT NULL,
+  `usuario` varchar(50) NOT NULL,
+  `clave` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `docente`
+--
+
+INSERT INTO `docente` (`id`, `nombre`, `apellido`, `dni`, `mail`, `estado`, `usuario`, `clave`) VALUES
+(1, ' MARCELO HUMBERTO', 'ABALLAY SORIA', '25714353', '', 0, '', ''),
+(2, ' ALICIA NOEMI', 'CELAYES FLORES', '30157746', '', 0, '', ''),
+(3, ' MARIA CELINA', 'COTO HIDALGO', '37741589', '', 0, '', ''),
+(4, ' ANALIA DEL PILAR', 'DELGADO', '20805413', '', 0, '', ''),
+(5, ' SERGIO GASTON', 'GARBEROGLIO ELIZONDO', '27269774', '', 0, '', ''),
+(6, ' ANALIA VERONICA', 'HEREDIA', '23922369', '', 0, '', ''),
+(7, ' JUAN DE DIOS', 'LOPEZ', '30725012', '', 0, '', ''),
+(8, ' EDUARDO MARCELO', 'MAURIN', '20130177', '', 0, '', ''),
+(9, ' RAQUEL EUGENIA', 'MICHALEK FORQUERA', '28262995', '', 0, '', ''),
+(10, ' VERÓNICA NOELIA', 'MOLINA ATENCIO', '32007429', '', 0, '', ''),
+(11, ' JOSE RUBEN', 'MOLL', '29588455', '', 0, '', ''),
+(12, ' LAURA EMILIA', 'ROMERO', '31642634', '', 0, '', ''),
+(13, ' VIVIANA EDITH', 'SANCHEZ', '29177212', '', 0, '', ''),
+(14, ' MARIA CECILIA DEL ROSARIO', 'SILVA IBAÑEZ', '35188938', '', 0, '', ''),
+(15, ' LUIS FERNANDO NICOLAS', 'ZALAZAR GARCIA', '28773900', '', 0, '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `dynamic_inputs_table`
 --
 
 CREATE TABLE `dynamic_inputs_table` (
   `id` int(11) NOT NULL,
   `input_value` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `dynamic_inputs_table`
+-- Volcado de datos para la tabla `dynamic_inputs_table`
 --
 
 INSERT INTO `dynamic_inputs_table` (`id`, `input_value`) VALUES
@@ -232,7 +270,7 @@ INSERT INTO `dynamic_inputs_table` (`id`, `input_value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `materias`
+-- Estructura de tabla para la tabla `materias`
 --
 
 CREATE TABLE `materias` (
@@ -240,10 +278,10 @@ CREATE TABLE `materias` (
   `nombre_materia` varchar(20) NOT NULL,
   `cuatrimestre` int(11) NOT NULL,
   `id_carrera_materia` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `materias`
+-- Volcado de datos para la tabla `materias`
 --
 
 INSERT INTO `materias` (`id_materia`, `nombre_materia`, `cuatrimestre`, `id_carrera_materia`) VALUES
@@ -256,7 +294,7 @@ INSERT INTO `materias` (`id_materia`, `nombre_materia`, `cuatrimestre`, `id_carr
 -- --------------------------------------------------------
 
 --
--- Table structure for table `persons`
+-- Estructura de tabla para la tabla `persons`
 --
 
 CREATE TABLE `persons` (
@@ -267,10 +305,10 @@ CREATE TABLE `persons` (
   `edad` int(11) NOT NULL,
   `nuevo_dato` int(11) NOT NULL,
   `opciones` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `persons`
+-- Volcado de datos para la tabla `persons`
 --
 
 INSERT INTO `persons` (`id`, `dni`, `nombre`, `apellido`, `edad`, `nuevo_dato`, `opciones`) VALUES
@@ -295,17 +333,17 @@ INSERT INTO `persons` (`id`, `dni`, `nombre`, `apellido`, `edad`, `nuevo_dato`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tabla1`
+-- Estructura de tabla para la tabla `tabla1`
 --
 
 CREATE TABLE `tabla1` (
   `id_tabla1` int(11) NOT NULL,
   `nombre1` varchar(20) NOT NULL,
   `apellido1` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tabla1`
+-- Volcado de datos para la tabla `tabla1`
 --
 
 INSERT INTO `tabla1` (`id_tabla1`, `nombre1`, `apellido1`) VALUES
@@ -316,17 +354,17 @@ INSERT INTO `tabla1` (`id_tabla1`, `nombre1`, `apellido1`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tabla2`
+-- Estructura de tabla para la tabla `tabla2`
 --
 
 CREATE TABLE `tabla2` (
   `id_tabla2` int(11) NOT NULL,
   `nombre2` varchar(20) NOT NULL,
   `apellido2` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tabla2`
+-- Volcado de datos para la tabla `tabla2`
 --
 
 INSERT INTO `tabla2` (`id_tabla2`, `nombre2`, `apellido2`) VALUES
@@ -337,17 +375,17 @@ INSERT INTO `tabla2` (`id_tabla2`, `nombre2`, `apellido2`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `titulos`
+-- Estructura de tabla para la tabla `titulos`
 --
 
 CREATE TABLE `titulos` (
   `id_titulo` int(11) NOT NULL,
   `detalle_titulo` varchar(50) NOT NULL,
   `puntaje` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `titulos`
+-- Volcado de datos para la tabla `titulos`
 --
 
 INSERT INTO `titulos` (`id_titulo`, `detalle_titulo`, `puntaje`) VALUES
@@ -358,17 +396,17 @@ INSERT INTO `titulos` (`id_titulo`, `detalle_titulo`, `puntaje`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `titulos_postgrado`
+-- Estructura de tabla para la tabla `titulos_postgrado`
 --
 
 CREATE TABLE `titulos_postgrado` (
   `id_titulo_postgrado` int(11) NOT NULL,
   `detalle_postgrado` varchar(50) NOT NULL,
   `puntaje` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `titulos_postgrado`
+-- Volcado de datos para la tabla `titulos_postgrado`
 --
 
 INSERT INTO `titulos_postgrado` (`id_titulo_postgrado`, `detalle_postgrado`, `puntaje`) VALUES
@@ -380,7 +418,7 @@ INSERT INTO `titulos_postgrado` (`id_titulo_postgrado`, `detalle_postgrado`, `pu
 -- --------------------------------------------------------
 
 --
--- Table structure for table `valoracion`
+-- Estructura de tabla para la tabla `valoracion`
 --
 
 CREATE TABLE `valoracion` (
@@ -392,10 +430,10 @@ CREATE TABLE `valoracion` (
   `j3` int(11) NOT NULL,
   `id_materia_valoracion` int(11) NOT NULL,
   `id_condicion` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `valoracion`
+-- Volcado de datos para la tabla `valoracion`
 --
 
 INSERT INTO `valoracion` (`id_valoracion`, `dni`, `id_titulo`, `j1`, `j2`, `j3`, `id_materia_valoracion`, `id_condicion`) VALUES
@@ -438,7 +476,7 @@ INSERT INTO `valoracion` (`id_valoracion`, `dni`, `id_titulo`, `j1`, `j2`, `j3`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `valoracion_postgrado`
+-- Estructura de tabla para la tabla `valoracion_postgrado`
 --
 
 CREATE TABLE `valoracion_postgrado` (
@@ -447,10 +485,10 @@ CREATE TABLE `valoracion_postgrado` (
   `detalle_valoracion_postgrado` varchar(100) NOT NULL,
   `fecha` date NOT NULL,
   `id_titulo_postgrado` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `valoracion_postgrado`
+-- Volcado de datos para la tabla `valoracion_postgrado`
 --
 
 INSERT INTO `valoracion_postgrado` (`id_postgrado`, `id_valoracion`, `detalle_valoracion_postgrado`, `fecha`, `id_titulo_postgrado`) VALUES
@@ -482,224 +520,236 @@ INSERT INTO `valoracion_postgrado` (`id_postgrado`, `id_valoracion`, `detalle_va
 (89, 137, 'www', '2020-01-01', 2);
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `antecedentes_docentes`
+-- Indices de la tabla `antecedentes_docentes`
 --
 ALTER TABLE `antecedentes_docentes`
   ADD PRIMARY KEY (`id_ant_doc`);
 
 --
--- Indexes for table `antecedentes_laborales`
+-- Indices de la tabla `antecedentes_laborales`
 --
 ALTER TABLE `antecedentes_laborales`
   ADD PRIMARY KEY (`id_ant_lab`);
 
 --
--- Indexes for table `capacitacion`
+-- Indices de la tabla `capacitacion`
 --
 ALTER TABLE `capacitacion`
   ADD PRIMARY KEY (`id_capacitacion`);
 
 --
--- Indexes for table `carreras`
+-- Indices de la tabla `carreras`
 --
 ALTER TABLE `carreras`
   ADD PRIMARY KEY (`id_carrera`);
 
 --
--- Indexes for table `condicion_docente`
+-- Indices de la tabla `condicion_docente`
 --
 ALTER TABLE `condicion_docente`
   ADD PRIMARY KEY (`id_condicion`);
 
 --
--- Indexes for table `detalle_ant_doc`
+-- Indices de la tabla `detalle_ant_doc`
 --
 ALTER TABLE `detalle_ant_doc`
   ADD PRIMARY KEY (`id_detalle_doc`);
 
 --
--- Indexes for table `detalle_ant_lab`
+-- Indices de la tabla `detalle_ant_lab`
 --
 ALTER TABLE `detalle_ant_lab`
   ADD PRIMARY KEY (`id_detalle_lab`);
 
 --
--- Indexes for table `detalle_capacitacion`
+-- Indices de la tabla `detalle_capacitacion`
 --
 ALTER TABLE `detalle_capacitacion`
   ADD PRIMARY KEY (`id_detalle_capacitacion`);
 
 --
--- Indexes for table `dynamic_inputs_table`
+-- Indices de la tabla `docente`
+--
+ALTER TABLE `docente`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `dynamic_inputs_table`
 --
 ALTER TABLE `dynamic_inputs_table`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `materias`
+-- Indices de la tabla `materias`
 --
 ALTER TABLE `materias`
   ADD PRIMARY KEY (`id_materia`),
   ADD KEY `id_carrera_materia` (`id_carrera_materia`);
 
 --
--- Indexes for table `persons`
+-- Indices de la tabla `persons`
 --
 ALTER TABLE `persons`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tabla1`
+-- Indices de la tabla `tabla1`
 --
 ALTER TABLE `tabla1`
   ADD PRIMARY KEY (`id_tabla1`);
 
 --
--- Indexes for table `tabla2`
+-- Indices de la tabla `tabla2`
 --
 ALTER TABLE `tabla2`
   ADD PRIMARY KEY (`id_tabla2`);
 
 --
--- Indexes for table `titulos`
+-- Indices de la tabla `titulos`
 --
 ALTER TABLE `titulos`
   ADD PRIMARY KEY (`id_titulo`);
 
 --
--- Indexes for table `titulos_postgrado`
+-- Indices de la tabla `titulos_postgrado`
 --
 ALTER TABLE `titulos_postgrado`
   ADD PRIMARY KEY (`id_titulo_postgrado`);
 
 --
--- Indexes for table `valoracion`
+-- Indices de la tabla `valoracion`
 --
 ALTER TABLE `valoracion`
   ADD PRIMARY KEY (`id_valoracion`);
 
 --
--- Indexes for table `valoracion_postgrado`
+-- Indices de la tabla `valoracion_postgrado`
 --
 ALTER TABLE `valoracion_postgrado`
   ADD PRIMARY KEY (`id_postgrado`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `antecedentes_docentes`
+-- AUTO_INCREMENT de la tabla `antecedentes_docentes`
 --
 ALTER TABLE `antecedentes_docentes`
   MODIFY `id_ant_doc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `antecedentes_laborales`
+-- AUTO_INCREMENT de la tabla `antecedentes_laborales`
 --
 ALTER TABLE `antecedentes_laborales`
   MODIFY `id_ant_lab` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `capacitacion`
+-- AUTO_INCREMENT de la tabla `capacitacion`
 --
 ALTER TABLE `capacitacion`
   MODIFY `id_capacitacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT for table `carreras`
+-- AUTO_INCREMENT de la tabla `carreras`
 --
 ALTER TABLE `carreras`
   MODIFY `id_carrera` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `condicion_docente`
+-- AUTO_INCREMENT de la tabla `condicion_docente`
 --
 ALTER TABLE `condicion_docente`
   MODIFY `id_condicion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `detalle_ant_doc`
+-- AUTO_INCREMENT de la tabla `detalle_ant_doc`
 --
 ALTER TABLE `detalle_ant_doc`
   MODIFY `id_detalle_doc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `detalle_ant_lab`
+-- AUTO_INCREMENT de la tabla `detalle_ant_lab`
 --
 ALTER TABLE `detalle_ant_lab`
   MODIFY `id_detalle_lab` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `detalle_capacitacion`
+-- AUTO_INCREMENT de la tabla `detalle_capacitacion`
 --
 ALTER TABLE `detalle_capacitacion`
   MODIFY `id_detalle_capacitacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `dynamic_inputs_table`
+-- AUTO_INCREMENT de la tabla `docente`
+--
+ALTER TABLE `docente`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT de la tabla `dynamic_inputs_table`
 --
 ALTER TABLE `dynamic_inputs_table`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=244;
 
 --
--- AUTO_INCREMENT for table `materias`
+-- AUTO_INCREMENT de la tabla `materias`
 --
 ALTER TABLE `materias`
   MODIFY `id_materia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
--- AUTO_INCREMENT for table `persons`
+-- AUTO_INCREMENT de la tabla `persons`
 --
 ALTER TABLE `persons`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
--- AUTO_INCREMENT for table `tabla1`
+-- AUTO_INCREMENT de la tabla `tabla1`
 --
 ALTER TABLE `tabla1`
   MODIFY `id_tabla1` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `tabla2`
+-- AUTO_INCREMENT de la tabla `tabla2`
 --
 ALTER TABLE `tabla2`
   MODIFY `id_tabla2` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `titulos`
+-- AUTO_INCREMENT de la tabla `titulos`
 --
 ALTER TABLE `titulos`
   MODIFY `id_titulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `titulos_postgrado`
+-- AUTO_INCREMENT de la tabla `titulos_postgrado`
 --
 ALTER TABLE `titulos_postgrado`
   MODIFY `id_titulo_postgrado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `valoracion`
+-- AUTO_INCREMENT de la tabla `valoracion`
 --
 ALTER TABLE `valoracion`
   MODIFY `id_valoracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 
 --
--- AUTO_INCREMENT for table `valoracion_postgrado`
+-- AUTO_INCREMENT de la tabla `valoracion_postgrado`
 --
 ALTER TABLE `valoracion_postgrado`
   MODIFY `id_postgrado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `materias`
+-- Filtros para la tabla `materias`
 --
 ALTER TABLE `materias`
   ADD CONSTRAINT `materias_ibfk_1` FOREIGN KEY (`id_carrera_materia`) REFERENCES `carreras` (`id_carrera`) ON DELETE CASCADE ON UPDATE CASCADE;
