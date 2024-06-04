@@ -26,7 +26,7 @@
         <img src="img/valorador_016.jpg" width="40" height="30" />
         <img src="img/valorador_017.jpg" width="40" height="30" />
       </div>
-      <a href="http://localhost/framework_ci4_ministerio/public/">
+      <a href="<?= base_url() ?>">
         <button type="button" class="btn btn-secondary">Volver</button>
       </a>
     </div>
