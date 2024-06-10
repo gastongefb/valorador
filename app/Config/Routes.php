@@ -20,6 +20,10 @@ $routes->get('/mostrar_materias', 'Validacion::mostrar_materias');
 //$routes->get('/mostrar_validaciones/(:num)', 'Validacion::mostrar_validaciones/$1');
 //$routes->post('/mostrar_validaciones', 'Validacion::mostrar_validaciones');
 
+//RUTAS PARA MOSTRAR TODAS LAS VALORACIONES POR MATERIA
+$routes->get('/Mostrar_Valoraciones_Por_Materia', 'Validacion::Mostrar_Valoraciones_Por_Materia');
+$routes->post('Mostrar_Valoraciones_Por_Materia3', 'Validacion::Mostrar_Valoraciones_Por_Materia3');
+
 //RUTAS PARA MOSTRAR TODAS LAS VALORACIONES
 $routes->get('/mostrar_valoraciones', 'Validacion::mostrar_valoraciones');
 $routes->post('/mostrar_valoraciones', 'Validacion::mostrar_valoraciones');
