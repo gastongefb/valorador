@@ -40,11 +40,11 @@
         <label for="fecha1">Fecha:</label>
         <input type="text" name="persons2[1][fecha]" id="fecha1"><br>
         <br>       
-        <button type="button" class="removePerson2">Eliminar Título</button>
+        <button type="button" class="removePerson2">Eliminar Capacitación</button>
     </div>
 </div>
 <br>
-<button type="button" id="addPerson2">Agregar Título</button>
+<button type="button" id="addPerson2">Agregar Capacitación</button>
 
 
 <script>
@@ -68,13 +68,13 @@
                           <option value="6">sin evaluación, donde se detallan días y no horas</option>
                         </select><br><br>
                         <label for="detalle${personCount}">Detalle:</label>
-                        <input type="text" name="persons2[${personCount}][id_detalle_capacitacion]" id="id_detalle_capacitacion${personCount}">
+                        <input type="text" name="persons2[${personCount}][detalle_capacitacion]" id="id_detalle_capacitacion${personCount}">
                         <br>
                         <br>
                         <label for="fecha${personCount}">Fecha:</label>
                         <input type="text" name="persons2[${personCount}][fecha]" id="fecha${personCount}"><br>
                         <br>                        
-                        <button type="button" class="removePerson2">Eliminar Título</button>
+                        <button type="button" class="removePerson2">Eliminar Capacitación</button>
                     </div>
                 `;
                 $('#personContainer').append(html);

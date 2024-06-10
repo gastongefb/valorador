@@ -11,6 +11,10 @@ use App\Models\TitulosPostgradoModel;
 use App\Models\CapacitacionModel;
 use App\Models\AntecedentesDocModel;
 use App\Models\AntecedentesLabModel;
+use App\Models\TitulosModel;
+use App\Models\DetalleCapacitacionModel;
+use App\Models\DetalleAntLabModel;
+use App\Models\DetalleAntDocModel;
 
 //PRUEBA DE PAGINACION
 use App\Models\paginacion\Model1;
@@ -30,11 +34,6 @@ class PersonController extends Controller
        //$this->valModel = new ValidacionModel();
     }
 
-    
-    public function index()
-    {
-        return view('add_persons');
-    }
      
 
 
@@ -457,22 +456,13 @@ class PersonController extends Controller
         $datosPaso3 = session()->get('datos_paso3');
         $datosPaso4 = session()->get('datos_paso4');
         $datosPaso5 = session()->get('datos_paso5');
-        //$datosPaso3 = session()->get('datos_paso3');
-        //$datosPaso4 = session()->get('datos_paso4');
-        //$datosPaso5 = session()->get('datos_paso5');
-
-        //$m1 = new Model1();
-        //$m2 = new Model2();
-
-        print_r($datosPaso1);
-        print_r($datosPaso2);
-        print_r($datosPaso3);
+      
 
         // Iterar sobre los datos de paso 1
     if ($datosPaso1) {
         echo "Datos del Paso 1:<br>";
         foreach ($datosPaso1 as $key => $value) {
-            echo "$key: $value<br>";
+            //echo "$key: $value<br>";
         }
     } else {
         echo "No hay datos en el Paso 1.<br>";
@@ -495,15 +485,15 @@ class PersonController extends Controller
     // Iterar sobre los datos de paso 2
     // Iterar sobre los datos de paso 2 y añadir el nuevo campo
     if (isset($datosPaso2['persons']) && is_array($datosPaso2['persons'])) {
-        echo "Datos del Paso 2:<br>";
+        //echo "Datos del Paso 2:<br>";
         foreach ($datosPaso2['persons'] as &$person) {
-            echo "Opción: " . $person['id_titulo_postgrado'] . "<br>";
-            echo "Detalle: " . $person['detalle_valoracion_postgrado'] . "<br>";
-            echo "Fecha: " . $person['fecha'] . "<br><br>";
+            //echo "Opción: " . $person['id_titulo_postgrado'] . "<br>";
+            //echo "Detalle: " . $person['detalle_valoracion_postgrado'] . "<br>";
+            //echo "Fecha: " . $person['fecha'] . "<br><br>";
             
             // Agregar el campo 'id_valoracion'
             $person['id_valoracion'] = $nuevoIdValoracion;
-            echo "Id Valoración: " . $person['id_valoracion'] . "<br><br>";
+            //echo "Id Valoración: " . $person['id_valoracion'] . "<br><br>";
         }
         unset($person); // Romper la referencia
     } else {
@@ -513,15 +503,15 @@ class PersonController extends Controller
     // Iterar sobre los datos de paso 3
     // Iterar sobre los datos de paso 3 y añadir el nuevo campo
     if (isset($datosPaso3['persons2']) && is_array($datosPaso3['persons2'])) {
-        echo "Datos del Paso 3:<br>";
+        //echo "Datos del Paso 3:<br>";
         foreach ($datosPaso3['persons2'] as &$person2) {
-            echo "Opción: " . $person2['id_detalle_capacitacion'] . "<br>";
-            echo "Detalle: " . $person2['detalle_capacitacion'] . "<br>";
-            echo "Fecha: " . $person2['fecha'] . "<br><br>";
+            //echo "Opción: " . $person2['id_detalle_capacitacion'] . "<br>";
+            //echo "Detalle: " . $person2['detalle_capacitacion'] . "<br>";
+            //echo "Fecha: " . $person2['fecha'] . "<br><br>";
             
             // Agregar el campo 'id_valoracion'
             $person2['id_valoracion'] = $nuevoIdValoracion;
-            echo "Id Valoración: " . $person2['id_valoracion'] . "<br><br>";
+            //echo "Id Valoración: " . $person2['id_valoracion'] . "<br><br>";
         }
         unset($person2); // Romper la referencia
     } else {
@@ -531,37 +521,37 @@ class PersonController extends Controller
     // Iterar sobre los datos de paso 4
     // Iterar sobre los datos de paso 4 y añadir el nuevo campo
     if (isset($datosPaso4['persons3']) && is_array($datosPaso4['persons3'])) {
-        echo "Datos del Paso 4:<br>";
+        //echo "Datos del Paso 4:<br>";
         foreach ($datosPaso4['persons3'] as &$person3) {
-            echo "Opción: " . $person3['id_detalle_doc'] . "<br>";
-            echo "Detalle: " . $person3['detalle_ant_doc'] . "<br>";
-            echo "Fecha: " . $person3['fecha'] . "<br><br>";
+            //echo "Opción: " . $person3['id_detalle_doc'] . "<br>";
+            //echo "Detalle: " . $person3['detalle_ant_doc'] . "<br>";
+            //echo "Fecha: " . $person3['fecha'] . "<br><br>";
             
             // Agregar el campo 'id_valoracion'
             $person3['id_valoracion'] = $nuevoIdValoracion;
-            echo "Id Valoración: " . $person3['id_valoracion'] . "<br><br>";
+            //echo "Id Valoración: " . $person3['id_valoracion'] . "<br><br>";
         }
         unset($person3); // Romper la referencia
     } else {
-        echo "No hay datos en el Paso 4.<br>";
+        //echo "No hay datos en el Paso 4.<br>";
     }
 
     // Iterar sobre los datos de paso 5
     // Iterar sobre los datos de paso 5 y añadir el nuevo campo
     if (isset($datosPaso5['persons4']) && is_array($datosPaso5['persons4'])) {
-        echo "Datos del Paso 5:<br>";
+        //echo "Datos del Paso 5:<br>";
         foreach ($datosPaso5['persons4'] as &$person4) {
-            echo "Opción: " . $person4['id_detalle_lab'] . "<br>";
-            echo "Detalle: " . $person4['detalle_ant_lab'] . "<br>";
-            echo "Fecha: " . $person4['fecha'] . "<br><br>";
+            //echo "Opción: " . $person4['id_detalle_lab'] . "<br>";
+            //echo "Detalle: " . $person4['detalle_ant_lab'] . "<br>";
+            //echo "Fecha: " . $person4['fecha'] . "<br><br>";
             
             // Agregar el campo 'id_valoracion'
             $person4['id_valoracion'] = $nuevoIdValoracion;
-            echo "Id Valoración: " . $person4['id_valoracion'] . "<br><br>";
+            //echo "Id Valoración: " . $person4['id_valoracion'] . "<br><br>";
         }
         unset($person4); // Romper la referencia
     } else {
-        echo "No hay datos en el Paso 5.<br>";
+        //echo "No hay datos en el Paso 5.<br>";
     }
 
         
@@ -610,44 +600,141 @@ class PersonController extends Controller
 
         return "Datos guardados correctamente.";
 
-        /*
-        if ($datosPaso1) {
-            // Guardar los datos en la base de datos
-            // Aquí llamas a tus modelos y métodos para guardar los datos en la base de datos
-            $val->insert($datosPaso1);
-            //$valp->insert($datosPaso2);
-            //$cap->insert($datosPaso3);
-            //$ant_doc->insert($datosPaso4);
-            //$ant_lab->insert($datosPaso5);
+    }
 
-            // Después de guardar en la base de datos, borra los datos de la sesión
-            session()->remove('datos_paso1');
-            //session()->remove('datos_paso2');
-            //session()->remove('datos_paso3');
-            //session()->remove('datos_paso4');
-            //session()->remove('datos_paso5');
+    public function buscar_valoracion()
+    {
+        // Obtén el DNI del input (por ejemplo, de un formulario)
+        $dni = $this->request->getPost('dni');
 
-            return "Datos de valoracion guardados correctamente.";
+        //echo"dni: ";
+        //echo $dni;
+        
+      
+        $val = new ValidacionModel();
+        $resultado = $val->getCodigoByDni($dni);
+
+        $resul = $val->getCodigoByTitulo($dni);
+
+        if (!empty($resultado)) {
+            $id_valoracion = $resultado[0]['id_valoracion'];
+            
         } else {
-            return "No hay datos suficientes para guardar.";
+            // Manejo de error: no se encontró id_valoracion para el DNI dado
         }
 
-        if ($datosPaso2) {
-            // Guardar los datos en la base de datos
-            // Aquí llamas a tus modelos y métodos para guardar los datos en la base de datos
-            $valp->insert($datosPaso2);
-            // Después de guardar en la base de datos, borra los datos de la sesión
-            session()->remove('datos_paso2');
-            //session()->remove('datos_paso3');
-            //session()->remove('datos_paso4');
-            //session()->remove('datos_paso5');
-
-            return "Datos de postgrado guardados correctamente.";
+        if (!empty($resul)) {
+            $cod_titulo = $resul[0]['id_titulo'];
+            
         } else {
-            return "No hay datos suficientes para guardar.";
+            // Manejo de error: no se encontró id_valoracion para el DNI dado
         }
        
-        */
+              
+        
+        if ($id_valoracion) {
+
+        //PUNTAJE DE TÍTULOS POSTGRADO    
+        $valPos = new ValoracionPostgradoModel();
+        $datosTabla1 = $valPos ->getCodigoById_valoracion($id_valoracion);//ACÁ PUEDE TRAER VARIOS
+        $tit = new TitulosPostgradoModel();
+        // Recorrer el array de códigos y obtener los puntajes del modelo TitulosPostgradoModel
+        foreach ($datosTabla1 as $t) {
+            $titulo = $tit->find($t['id_titulo_postgrado']); // Suponiendo que el método find busca por la clave primaria
+            if ($titulo) {
+                $puntajes[] = [
+                    'detalle' => $t['detalle_valoracion_postgrado'],
+                    'puntaje' => $titulo['puntaje']
+                ];
+            }
+        }
+            
+        //PUNTAJE DEL TÍTULO DE BASE
+        $titulo = new TitulosModel();
+        $datosTabla2 = $titulo->getDatosByCodigo($cod_titulo);//ACÁ TRAE UN DATO
+        $vv = $datosTabla2[0]['detalle_titulo']; 
+        $vv2 = $datosTabla2[0]['puntaje']; 
+        //print_r($datosTabla2);  
+
+        $titulo = [
+            'detalle' => $vv,
+            'puntaje' => $vv2
+        ];
+
+        //PUNTAJE DE CAPACITACIONES   
+        $cap = new CapacitacionModel();
+        $datosTabla3 = $cap->getCodigoById_detallae_cap($id_valoracion);//ACÁ PUEDE TRAER VARIOS
+
+        $ca = new DetalleCapacitacionModel();
+        foreach ($datosTabla3 as $c) {
+            $capacitacion = $ca->find($c['id_detalle_capacitacion']); // Suponiendo que el método find busca por la clave primaria
+            if ($capacitacion) {
+                $puntajes3[] = [
+                    'id_detalle_capacitacion' => $c['id_detalle_capacitacion'],
+                    'puntaje' => $capacitacion['puntaje'],
+                    'detalle' => $c['detalle_capacitacion'],
+                ];
+            }
+        }
+        //echo"arreglo puntajes3";
+        //print_r($puntajes3);
+        
+        //PUNTAJE DE ANTECEDENTES DOCOENTES    
+        $antLab = new AntecedentesLabModel();
+        $datosTabla4 = $antLab->getDatosById_detalle_lab($id_valoracion);//ACÁ PUEDE TRAER 
+            
+        $dl = new DetalleAntLabModel();
+        foreach ($datosTabla4 as $de) {
+            $detalle_la = $dl->find($de['id_detalle_lab']); // Suponiendo que el método find busca por la clave primaria
+            if ($detalle_la) {
+                $puntajes4[] = [
+                    'id_detalle_lab' => $de['id_detalle_lab'],
+                    'puntaje' => $detalle_la['puntaje'],
+                    'detalle' => $de['detalle_ant_lab'],
+                ];
+            }
+        }
+
+        //echo"nuevo arreglo ant laborales";
+        //print_r($puntajes3);
+
+        //PUNTAJE DE ANTECEDENTES DOCENTES 
+        $antDoc = new AntecedentesDocModel();
+        $datosTabla5 = $antDoc->getDatosById_ant_doc($id_valoracion);//ACÁ PUEDE TRAER VARIOS
+
+        $do = new DetalleAntDocModel();
+        foreach ($datosTabla5 as $dc) {
+            $detalle_do = $do->find($dc['id_detalle_doc']); // Suponiendo que el método find busca por la clave primaria
+            if ($detalle_do) {
+                $puntajes5[] = [
+                    'id_detalle_doc' => $dc['id_detalle_doc'],
+                    'puntaje' => $detalle_do['puntaje'],
+                    'detalle' => $dc['detalle_ant_doc'],
+                ];
+            }
+        }
+        
+        //PASAMOS LOS DATOS A LA VISTA  
+        return view('resultado_busqueda_valoracion', [
+                'datosTabla1' => $puntajes,
+                'datosTabla2' => $titulo,
+
+                'datosTabla3' => $puntajes3,
+                'datosTabla4' => $puntajes4,
+                'datosTabla5' => $puntajes5,
+
+            ]);
+           
+        } 
+        else {
+            return view('error', ['mensaje' => 'DNI no encontrado']);
+        }
+       
+    }
+
+    public function index()
+    {
+        return view('buscar_valoración');
     }
 
 }

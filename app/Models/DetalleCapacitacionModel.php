@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class TitulosModel extends Model
+class DetalleCapacitacionModel extends Model
 {
     //protected $table = 'materias';
 
-    protected $primaryKey = 'id_titulo';
+    protected $primaryKey = 'id_detalle_capacitacion';
 
     protected $useAutoIncrement = true;
 
-    protected $allowedFields = ['detalle_titulo','puntaje'];
+    protected $allowedFields = ['detalle','puntaje'];
 
-    protected $table = 'titulos';
+    protected $table = 'detalle_capacitacion';
 
     public function getValidacion()
     {
@@ -28,17 +28,15 @@ class TitulosModel extends Model
     }
     */ 
 
-    public function getDatosByCodigo($codigo)
+    public function getCodigoByPuntajeCap($id_tit_ca)
     {
         $builder = $this->db->table($this->table);
-        $builder->select('*');
-        $builder->where('id_titulo',$codigo);
+        $builder->select('puntaje');
+        $builder->where('id_detalle_capacitacion',$id_tit_ca);
         $query = $builder->get();
  
         return $query->getResultArray(); // Devuelve los resultados como un array asociativo
     }
-
-   
 
  
 

@@ -27,4 +27,16 @@ class ValoracionPostgradoModel extends Model
         $builder = $this->db->query("select * from validación where dni = $d");
         return $builder->getResult();
     }
+
+    public function getCodigoById_valoracion($codigo)
+   {
+       $builder = $this->db->table($this->table);
+       $builder->select('*');
+       $builder->where('id_valoracion', $codigo);
+       $query = $builder->get();
+
+       return $query->getResultArray(); // Devuelve los resultados como un array asociativo
+   }
+
+   
 }

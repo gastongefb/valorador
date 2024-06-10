@@ -27,4 +27,19 @@ class CapacitacionModel extends Model
         $builder = $this->db->query("select * from validación where dni = $d");
         return $builder->getResult();
     }
+
+    public function getDatosByCodigo($codigo)
+    {
+        return $this->where('id_detalle_capacitacion', $codigo)->findAll();
+    }
+
+    public function getCodigoById_detallae_cap($codigo)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->select('*');
+        $builder->where('id_valoracion', $codigo);
+        $query = $builder->get();
+ 
+        return $query->getResultArray(); // Devuelve los resultados como un array asociativo
+    }
 }

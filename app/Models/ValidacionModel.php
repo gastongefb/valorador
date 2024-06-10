@@ -63,4 +63,24 @@ class ValidacionModel extends Model
     }
    }
 
+   public function getCodigoByDni($dni)
+   {
+       $builder = $this->db->table($this->table);
+       $builder->select('id_valoracion');
+       $builder->where('dni',$dni);
+       $query = $builder->get();
+
+       return $query->getResultArray(); // Devuelve los resultados como un array asociativo
+   }
+
+   public function getCodigoByTitulo($dni)
+   {
+       $builder = $this->db->table($this->table);
+       $builder->select('id_titulo');
+       $builder->where('dni',$dni);
+       $query = $builder->get();
+
+       return $query->getResultArray(); // Devuelve los resultados como un array asociativo
+   }
+
 }

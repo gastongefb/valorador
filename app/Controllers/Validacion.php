@@ -6,6 +6,17 @@ use App\Models\ValidacionModel;
 use App\Models\MateriasModel;
 use App\Models\ValoracionModel;
 use App\Models\ValoracionPostgradoModel;
+use App\Models\TitulosModel;
+use App\Models\CondicionDocenteModel; 
+use CodeIgniter\Controller;
+use App\Models\TitulosPostgradoModel;
+use App\Models\CapacitacionModel;
+use App\Models\AntecedentesDocModel;
+use App\Models\AntecedentesLabModel;
+
+use App\Models\DetalleCapacitacionModel;
+use App\Models\DetalleAntLabModel;
+use App\Models\DetalleAntDocModel;
 
 class Validacion extends BaseController
 {
@@ -142,38 +153,118 @@ class Validacion extends BaseController
 
     public function mostrar_valoraciones()
     {
-        {
             $db = \Config\Database::connect();
 
+
+            $validacionModel = new ValidacionModel();
             
-    
-            $sql = $db->table('valoracion v');
-            $sql->select('v.*, m.nombre_materia');
-            $sql->join('materias m', 'v.id_materia_valoracion = m.id_materia');
-            $query = $sql->get();
-            $resultado = $query->getResultArray();
+            $mat = new MateriasModel();
 
-            $sql2 = $db->table('valoracion v');
-            $sql2->select('c.detalle_condicion');
-            $sql2->join('condicion_docente c', 'v.id_condicion = c.id_condicion');
-            $query2 = $sql2->get();
-            $resultado2 = $query2->getResultArray();
+            $tit = new TitulosModel();
 
-            $sql3 = $db->table('valoracion v');
-            $sql3->select('t.detalle_titulo');
-            $sql3->join('titulos t', 'v.id_titulo = t.id_titulo');
-            $query3 = $sql3->get();
-            $resultado3 = $query3->getResultArray();
+            $con = new CondicionDocenteModel();
+
+            $valpos = new ValoracionPostgradoModel();
+
+            $Titulopostgrado = new TitulosPostgradoModel();
+            $cap = new CapacitacionModel();
+            $antLab = new AntecedentesLabModel();
+            $antDoc = new AntecedentesDocModel();
+
+        // Obtener todos los registros de la tabla 'valoracion'
+        $registros = $validacionModel->findAll();
+
+        //print_r($registros);
+        //$titulo=[];
+        // Iterar sobre los registros y trabajar con los valores
+        foreach ($registros as $registro) {
+            $dni = $registro['dni'];
+            $idTitulo = $registro['id_titulo'];
+            $j1 = $registro['j1'];
+            $j2 = $registro['j2'];
+            $j3 = $registro['j3'];
+            $idMateriaValoracion = $registro['id_materia_valoracion'];
+            $idCondicion = $registro['id_condicion'];
+            $id_va = $registro['id_valoracion'];
+            //echo $id_va;
+            //echo" ";
+            $tt = $mat->getNombreMateria($idMateriaValoracion);
+            $materia = $tt[0]['nombre_materia'];
             
-    
-            //echo $db->getLasTQuery(); //CON ESTO HAGO QUE SE VEA EN LA VISTA LA CONSULTA QUE ESTOY EJECUTANDO
+            $t = $tit->getDatosByCodigo($idTitulo);
+            $titulo_det = $t[0]['detalle_titulo'];
 
-    
-            $data = ['validaciones'=>$resultado, 'validaciones2'=>$resultado2, 'validaciones3'=>$resultado3];
+            $c = $con->getDetalleConcidion($idCondicion);
+            $condicion = $c[0]['detalle_condicion'];
 
-            //$data2 = ['titulo'=> 'Listado de Validaciones', 'validaciones2'=>$resultado2];
-            return view('mostrarValoraciones', $data);
-        }
+            //PASOS PARA ARMAR EL PUNTAJE
+            $val = $valpos->getCodigoById_valoracion($id_va);
+            $suma = 0;
+            foreach($val as $vv) {
+                $valor = $vv['id_titulo_postgrado'];
+                $puntaje = $Titulopostgrado->getCodigoByPuntaje($valor);
+                $suma=$suma + $puntaje[0]['puntaje']; 
+            }
+
+            
+            $datos_capacitacion = $cap->getCodigoById_detallae_cap($id_va);
+            $ca = new DetalleCapacitacionModel();
+            foreach ($datos_capacitacion as $c) {
+                $capacitacion = $ca->find($c['id_detalle_capacitacion']);
+                $suma = $suma + $capacitacion['puntaje'];
+                
+            }
+
+            
+            $datosTabla4 = $antLab->getDatosById_detalle_lab($id_va);//ACÁ PUEDE TRAER 
+            $dl = new DetalleAntLabModel();
+            foreach ($datosTabla4 as $de) {
+               $detalle_la = $dl->find($de['id_detalle_lab']); // Suponiendo que el método find busca por la clave primaria
+               $suma = $suma + $detalle_la['puntaje'];
+            }
+
+                        
+            $datosTabla5 = $antDoc->getDatosById_ant_doc($id_va);//ACÁ PUEDE TRAER VARIOS
+            $do = new DetalleAntDocModel();
+            foreach ($datosTabla5 as $dc) {
+               $detalle_do = $do->find($dc['id_detalle_doc']); // Suponiendo que el método find busca por la clave primaria
+               $suma = $suma + $detalle_do['puntaje'];
+            }
+        
+            //PUNTAJE DEL TÍTULO DE BASE
+            
+            $datosTabla2 = $tit->getDatosByCodigo($idTitulo);//ACÁ TRAE UN DATO
+            $vv = $datosTabla2[0]['detalle_titulo']; 
+            $vv2 = $datosTabla2[0]['puntaje']; 
+        
+            $suma = $suma + $vv2;
+    
+
+
+            //ARMO UN ARREGLO CON TODOS LOS DATOS QUE NECESITO MOSTRAR
+          
+            $titulo[] = [
+                'dni' => $dni,
+                'titulo_det' => $titulo_det,
+                'j1' => $j1,
+                'j2' => $j2,
+                'j3' => $j3,
+                'materia' => $materia,
+                'condicion' => $condicion,
+                'puntaje' => $suma,
+
+            ];
+
+          
+        } 
+       
+        //PASAMOS LOS DATOS A LA VISTA  
+        return view('mostrarValoraciones', ['datosTabla1' => $titulo,]);
+    
+
+         /*
+        
+     */  
 
     }
 

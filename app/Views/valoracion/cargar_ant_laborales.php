@@ -36,11 +36,11 @@
         <label for="fecha1">Fecha:</label>
         <input type="text" name="persons4[1][fecha]" id="fecha1"><br>
         <br>       
-        <button type="button" class="removePerson4">Eliminar Título</button>
+        <button type="button" class="removePerson4">Eliminar Ant. Doc.</button>
     </div>
 </div>
 <br>
-<button type="button" id="addPerson4">Agregar Título</button>
+<button type="button" id="addPerson4">Agregar Ant. Lab.</button>
 
 
 <script>
@@ -66,7 +66,7 @@
                         <label for="fecha${personCount}">Fecha:</label>
                         <input type="text" name="persons4[${personCount}][fecha]" id="fecha${personCount}"><br>
                         <br>                        
-                        <button type="button" class="removePerson4">Eliminar Título</button>
+                        <button type="button" class="removePerson4">Eliminar Ant. Lab.</button>
                     </div>
                 `;
                 $('#personContainer').append(html);

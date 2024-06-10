@@ -37,11 +37,11 @@
         <label for="fecha1">Fecha:</label>
         <input type="text" name="persons3[1][fecha]" id="fecha1"><br>
         <br>       
-        <button type="button" class="removePerson3">Eliminar Título</button>
+        <button type="button" class="removePerson3">Eliminar Ant. Doc.</button>
     </div>
 </div>
 <br>
-<button type="button" id="addPerson3">Agregar Título</button>
+<button type="button" id="addPerson3">Agregar Ant. Doc.</button>
 
 
 <script>
@@ -57,12 +57,9 @@
                         <!-- Nuevo campo de selección -->
                         <label for="opciones${personCount}">Seleccione opción:</label>
                         <select name="persons3[${personCount}][id_detalle_doc]" id="opciones${personCount}">
-                          <option value="1">con evaluación, con un mínimo de 30 hs.</option>
-                          <option value="2">con evaluación, con menos de 30 hs.</option>
-                          <option value="3">con evaluación, donde se detallan días y no horas.</option>
-                          <option value="4">sin evaluación, con un mínimo de 30 hs.</option>
-                          <option value="5">sin evaluación, con menos o sin especificar las horas</option>
-                          <option value="6">sin evaluación, donde se detallan días y no horas</option>
+                          <option value="1">Antiguedad en el espacio curricular o equivalente en el nivel Superior Técnico.</option>
+                          <option value="2">Antiguedad en otros espacios curriculares del nivel Superior Técnico.</option>
+                          <option value="3">Antiguedad en otros espacios curriculares del nivel Superior Técnico.</option>
                         </select><br><br>
                         <label for="detalle${personCount}">Detalle:</label>
                         <input type="text" name="persons3[${personCount}][detalle_ant_doc]" id="detalle_ant_doc${personCount}">
@@ -71,7 +68,7 @@
                         <label for="fecha${personCount}">Fecha:</label>
                         <input type="text" name="persons3[${personCount}][fecha]" id="fecha${personCount}"><br>
                         <br>                        
-                        <button type="button" class="removePerson3">Eliminar Título</button>
+                        <button type="button" class="removePerson3">Eliminar Ant. Doc.</button>
                     </div>
                 `;
                 $('#personContainer').append(html);

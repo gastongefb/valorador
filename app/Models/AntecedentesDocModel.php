@@ -12,7 +12,7 @@ class AntecedentesDocModel extends Model
 
     protected $useAutoIncrement = true;
 
-    protected $allowedFields = ['id_valoracion','cant_anos','detalle_ant_doc','fecha','id_detalle_doc'];
+    protected $allowedFields = ['id_valoracion','detalle_ant_doc','fecha','id_detalle_doc'];
 
     protected $table = 'antecedentes_docentes';
 
@@ -26,5 +26,20 @@ class AntecedentesDocModel extends Model
         $db = \Config\Database::connect();
         $builder = $this->db->query("select * from validación where dni = $d");
         return $builder->getResult();
+    }
+
+    public function getDatosByCodigo($codigo)
+    {
+        return $this->where('id_detalle_doc', $codigo)->findAll();
+    }
+
+    public function getDatosById_ant_doc($codigo)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->select('*');
+        $builder->where('id_valoracion',$codigo);
+        $query = $builder->get();
+ 
+        return $query->getResultArray(); // Devuelve los resultados como un array asociativo
     }
 }
