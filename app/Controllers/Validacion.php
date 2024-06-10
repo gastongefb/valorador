@@ -268,6 +268,149 @@ class Validacion extends BaseController
 
     }
 
+    public function Mostrar_Valoraciones_Por_Materia()
+    {
+        $db = \Config\Database::connect();
+
+    
+        $sql2 = $db->table('materias');
+        //$sql->select('id_carrera,nombre_carrera');
+        $query2 = $sql2->get();
+        $resultado2 = $query2->getResultArray();
+
+        $data2 = ['titulo'=> 'Listado de Materias', 'materias'=>$resultado2];
+        //return view('mostrarValidaciones', $data);
+      
+
+
+        helper('form');
+        //return view('cargarValoracion', $data+$data2+$data3);
+        return view('Mostrar_Valoraciones_Por_Materia2', $data2);
+    }
+
+    public function Mostrar_Valoraciones_Por_Materia3()
+    {
+         // Recuperar los datos del formulario
+         $datos = $this->request->getPost();
+
+        //ACA TENGO QUE HACER ALGO PARECIDO A mostrar_valoraciones(), PERO PARA LA MATERIA PARTICULAR
+
+        $db = \Config\Database::connect();
+
+
+        $validacionModel = new ValidacionModel();
+        
+        $mat = new MateriasModel();
+
+        $tit = new TitulosModel();
+
+        $con = new CondicionDocenteModel();
+
+        $valpos = new ValoracionPostgradoModel();
+
+        $Titulopostgrado = new TitulosPostgradoModel();
+        $cap = new CapacitacionModel();
+        $antLab = new AntecedentesLabModel();
+        $antDoc = new AntecedentesDocModel();
+
+    // Obtener todos los registros de la tabla 'valoracion'
+    $registros = $validacionModel->getValidacionesPorMateria($datos);
+
+    //print_r($registros);
+    //$titulo=[];
+    // Iterar sobre los registros y trabajar con los valores
+    foreach ($registros as $registro) {
+        $dni = $registro['dni'];
+        $idTitulo = $registro['id_titulo'];
+        $j1 = $registro['j1'];
+        $j2 = $registro['j2'];
+        $j3 = $registro['j3'];
+        $idMateriaValoracion = $registro['id_materia_valoracion'];
+        $idCondicion = $registro['id_condicion'];
+        $id_va = $registro['id_valoracion'];
+        //echo $id_va;
+        //echo" ";
+        $tt = $mat->getNombreMateria($idMateriaValoracion);
+        $materia = $tt[0]['nombre_materia'];
+        
+        $t = $tit->getDatosByCodigo($idTitulo);
+        $titulo_det = $t[0]['detalle_titulo'];
+
+        $c = $con->getDetalleConcidion($idCondicion);
+        $condicion = $c[0]['detalle_condicion'];
+
+        //PASOS PARA ARMAR EL PUNTAJE
+        $val = $valpos->getCodigoById_valoracion($id_va);
+        $suma = 0;
+        foreach($val as $vv) {
+            $valor = $vv['id_titulo_postgrado'];
+            $puntaje = $Titulopostgrado->getCodigoByPuntaje($valor);
+            $suma=$suma + $puntaje[0]['puntaje']; 
+        }
+
+        
+        $datos_capacitacion = $cap->getCodigoById_detallae_cap($id_va);
+        $ca = new DetalleCapacitacionModel();
+        foreach ($datos_capacitacion as $c) {
+            $capacitacion = $ca->find($c['id_detalle_capacitacion']);
+            $suma = $suma + $capacitacion['puntaje'];
+            
+        }
+
+        
+        $datosTabla4 = $antLab->getDatosById_detalle_lab($id_va);//ACÁ PUEDE TRAER 
+        $dl = new DetalleAntLabModel();
+        foreach ($datosTabla4 as $de) {
+           $detalle_la = $dl->find($de['id_detalle_lab']); // Suponiendo que el método find busca por la clave primaria
+           $suma = $suma + $detalle_la['puntaje'];
+        }
+
+                    
+        $datosTabla5 = $antDoc->getDatosById_ant_doc($id_va);//ACÁ PUEDE TRAER VARIOS
+        $do = new DetalleAntDocModel();
+        foreach ($datosTabla5 as $dc) {
+           $detalle_do = $do->find($dc['id_detalle_doc']); // Suponiendo que el método find busca por la clave primaria
+           $suma = $suma + $detalle_do['puntaje'];
+        }
+    
+        //PUNTAJE DEL TÍTULO DE BASE
+        
+        $datosTabla2 = $tit->getDatosByCodigo($idTitulo);//ACÁ TRAE UN DATO
+        $vv = $datosTabla2[0]['detalle_titulo']; 
+        $vv2 = $datosTabla2[0]['puntaje']; 
+    
+        $suma = $suma + $vv2;
+
+
+
+        //ARMO UN ARREGLO CON TODOS LOS DATOS QUE NECESITO MOSTRAR
+      
+        $titulo[] = [
+            'dni' => $dni,
+            'titulo_det' => $titulo_det,
+            'j1' => $j1,
+            'j2' => $j2,
+            'j3' => $j3,
+            'materia' => $materia,
+            'condicion' => $condicion,
+            'puntaje' => $suma,
+
+        ];
+
+      
+    } 
+   
+    //PASAMOS LOS DATOS A LA VISTA  
+    return view('mostrarValoraciones', ['datosTabla1' => $titulo,]);
+
+
+     /*
+    
+ */  
+
+        
+    }
+
     public function insertar()
     {
         $arreglo = [

@@ -26,6 +26,43 @@
   </thead>
   <?php 
   $x=1;
+
+  //LAIDEA ES CREAR OTRO ARREGLO CON SOLO LOS DOCENTES Y LUEGO RECORRER ESTE ARREGLO Y MOSTRAR LOS DATO
+  //LUEGO HACER LO MISMO CON LOS HABILITANTES
+  /*
+  foreach ($datosTabla1 as $registro) {
+  
+      
+     $reg = $registro['dni'];
+     $registro['titulo_det'];
+     $registro['j1'];
+     $registro['j2'];
+     $registro['j3'];
+     $registro['materia'];
+     $registro['condicion'];
+     $registro['puntaje'];
+
+     if $reg == "Docente"
+     {
+
+      $docente[] = [
+        'dni' => $registro['dni'],
+        'titulo_det' => $registro['titulo_det'],
+        'j1' => ['j1'],
+        'j2' => ['j2'],
+        'j3' => ['j3'],
+        'materia' => $registro['materia'],
+        'condicion' => $registro['condicion'],
+        'puntaje' => $registro['puntaje'],
+
+    ];
+
+     }
+    
+
+} 
+*/
+
   foreach ($datosTabla1 as $registro): ?>
   <tbody>
     <tr>
