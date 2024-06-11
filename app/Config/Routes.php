@@ -64,9 +64,10 @@ $routes->get('/Docente', 'DocenteController::index');
 $routes->get('/Docente/create', 'DocenteController::create');
 $routes->post('/Docente', 'DocenteController::store');
 $routes->get('/Docente/(:num)', 'DocenteController::show/$1');
+
 $routes->get('/Docente/:id/edit', 'DocenteController::edit');
 $routes->put('/Docente/:id', 'DocenteController::update');
-$routes->delete('/Docente/:num', 'DocenteController::destroy');
+$routes->delete('/Docente/(:num)', 'DocenteController::destroy/$1',[ 'as' => 'Docente.destroy' ]);
 //$routes->delete('/Docente/:id', 'DocenteController::destroy')->filter('authGuard');
 
 

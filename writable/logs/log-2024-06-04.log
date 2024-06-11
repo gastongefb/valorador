@@ -9,3 +9,18 @@ in SYSTEMPATH\Debug\Toolbar\Collectors\History.php on line 80.
  7 SYSTEMPATH\CodeIgniter.php(442): CodeIgniter\Events\Events::trigger('pre_system')
  8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-06-04 23:32:47 --> BadMethodCallException: Call to undefined method App\Models\DocenteModel::deleteDocente
+in SYSTEMPATH\Model.php on line 874.
+ 1 APPPATH\Controllers\DocenteController.php(59): CodeIgniter\Model->__call('deleteDocente', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\DocenteController->destroy('1')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DocenteController))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-06-04 23:35:06 --> CodeIgniter\HTTP\Exceptions\HTTPException: The route for "Docente.DocenteIndex" cannot be found.
+in SYSTEMPATH\HTTP\RedirectResponse.php on line 62.
+ 1 SYSTEMPATH\HTTP\RedirectResponse.php(62): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidRedirectRoute('Docente.DocenteIndex')
+ 2 APPPATH\Controllers\DocenteController.php(60): CodeIgniter\HTTP\RedirectResponse->route(false)
+ 3 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\DocenteController->destroy('1')
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DocenteController))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()

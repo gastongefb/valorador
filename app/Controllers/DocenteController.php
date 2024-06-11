@@ -32,9 +32,6 @@ class DocenteController extends BaseController
         $mensage=$this->DocenteModel->saveDocente($data);
 
         return redirect()->route('Docente');
-
-       
-
         
     }
 
@@ -60,6 +57,7 @@ class DocenteController extends BaseController
     public function destroy($id)
     {
         $this->DocenteModel->deleteDocente($id);
-        return redirect()->route('Docente.DocenteIndex');
+        //return redirect()->route('Docente.DocenteIndex');
+        return redirect()->route('Docente');
     }
 }

@@ -58,10 +58,14 @@ class DocenteModel extends Model
             return $data;
         }
         
-       
         $data['clave'] = password_hash($data['clave'], PASSWORD_DEFAULT);
        // unset($data['clave']);
         
         return $data;
     }
+    public function deleteDocente($id_docente)
+    {
+        return $this->delete($id_docente);
+    }
+
 }

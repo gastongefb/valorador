@@ -67,12 +67,13 @@
                   
                     <!-- <a href="<?= route_to('Docente.edit', $Docente["id"]) ?>">Editar</a> --> 
 
-                    <form action="<?= route_to('Docente.destroy', $Docente["id"]) ?>" method="post" style="display: inline-block;">
+                    <form id="MF<?= $Docente['id'] ?>" action="<?= base_url() ?><?= route_to('Docente.destroy', $Docente["id"]) ?>" method="post" style="display: inline-block;">
                         <?= csrf_field() ?>
-                        <input type="hidden" name="id" value="$Docente['id']">
+                        <input type="hidden" name="id" value="<?= $Docente['id'] ?>">
                         <input type="hidden" name="_method" value="delete">
-                        <!--  <button type="submit">Baja</button>  --> 
+                        <button   type="submit" id="enviar<?= $Docente['id'] ?>" >Baja</button>  
                     </form>
+                    
                 </td>
             </tr>
         <?php endforeach; ?>
