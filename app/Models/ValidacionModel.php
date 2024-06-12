@@ -83,4 +83,16 @@ class ValidacionModel extends Model
        return $query->getResultArray(); // Devuelve los resultados como un array asociativo
    }
 
+   public function getValidacionesPorMateria($dato)
+   {
+       $builder = $this->db->table($this->table);
+       $builder->select('*');
+       $builder->where('id_materia_valoracion',$dato);
+       $query = $builder->get();
+
+       return $query->getResultArray(); // Devuelve los resultados como un array asociativo
+   }
+
 }
+
+
