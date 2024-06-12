@@ -16,6 +16,10 @@ use CodeIgniter\Router\RouteCollection;
 //RUTA PARA MOSTRAR LAS MATERIAS
 $routes->get('/mostrar_materias', 'Validacion::mostrar_materias');
 
+//RUTAS PARA CARGAR UNA MATERIA
+$routes->get('/insertar_materia1', 'Validacion::insertar_materia1');
+$routes->post('/insertar_materia2', 'Validacion::insertar_materia2');
+
 
 //RUTAS PARA MOSTRAR TODAS LAS VALORACIONES POR MATERIA
 $routes->get('/Mostrar_Valoraciones_Por_Materia', 'Validacion::Mostrar_Valoraciones_Por_Materia');
@@ -30,9 +34,7 @@ $routes->get('/nuevo', 'Validacion::nuevo');
 $routes->post('/guardar', 'Validacion::guardar');
 
 
-//RUTAS PARA CARGAR UNA MATERIA
-$routes->get('/insertar_materia1', 'Validacion::insertar_materia1');
-$routes->post('/insertar_materia2', 'Validacion::insertar_materia2');
+
 
 //RUTAS PATA MOSTRAR PLANES DE ESTUDIO
 $routes->get('/mostrarPlanes', 'Validacion::mostrarPlanes');
