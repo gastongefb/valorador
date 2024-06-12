@@ -37,7 +37,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="http://localhost/valorador/public/cargar_valoracion">Cargar Valoración</a></li>
-              <li><a class="dropdown-item" href="http://localhost/valorador/public/busqueda">Mostrar Valoración por Docente</a></li>
+              <li><a class="dropdown-item" href="http://localhost/valorador/public/buscar_valoracion_por_docente">Mostrar Valoración por Docente</a></li>
               <li><a class="dropdown-item" href="http://localhost/valorador/public/Mostrar_Valoraciones_Por_Materia">Mostrar Valoración por Materia</a></li>
               <li><a class="dropdown-item" href="http://localhost/valorador/public/mostrar_valoraciones">Mostrar Todas las Valoraciones</a></li>
 

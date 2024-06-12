@@ -7,7 +7,7 @@
 <div class="container-fluid">
     <h3>Buscar Docente</h3>
 
-   <form action="<?php echo base_url('buscar_valoracion') ?>" method="post" autocomplete="off">
+   <form action="<?php echo base_url('buscar_valoracion_por_docente2') ?>" method="post" autocomplete="off">
 
    <label fro="dni" class="col-sm-2 form-label">Dni</label>
    <input type="text" class="form-control" name="dni" autofocus>
