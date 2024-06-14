@@ -1,5 +1,8 @@
 <?php echo $this->extend('layaout'); ?>
+
+
 <?php echo $this->section('contenido'); ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

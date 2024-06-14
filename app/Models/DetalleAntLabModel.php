@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class AntecedentesLabModel extends Model
+class DetalleAntLabModel extends Model
 {
     //protected $table = 'materias';
 
-    protected $primaryKey = 'id_ant_lab';
+    protected $primaryKey = 'id_detalle_lab';
 
     protected $useAutoIncrement = true;
 
-    protected $allowedFields = ['id_valoracion','detalle_ant_lab','fecha','id_detalle_lab'];
+    protected $allowedFields = ['detalle_ant_lab','puntaje'];
 
-    protected $table = 'antecedentes_laborales';
+    protected $table = 'detalle_ant_lab';
 
     public function getValidacion()
     {
@@ -33,11 +33,11 @@ class AntecedentesLabModel extends Model
         return $this->where('id_detalle_lab', $codigo)->findAll();
     }
 
-    public function getDatosById_detalle_lab($codigo)
+    public function getCodigoByPuntajeAntLab($det_lab)
     {
         $builder = $this->db->table($this->table);
-        $builder->select('*');
-        $builder->where('id_valoracion',$codigo);
+        $builder->select('puntaje');
+        $builder->where('id_detalle_lab',$det_lab);
         $query = $builder->get();
  
         return $query->getResultArray(); // Devuelve los resultados como un array asociativo

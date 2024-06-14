@@ -38,5 +38,15 @@ class TitulosPostgradoModel extends Model
         }
     }
 
+    public function getCodigoByPuntaje($id_tit_post)
+   {
+       $builder = $this->db->table($this->table);
+       $builder->select('puntaje');
+       $builder->where('id_titulo_postgrado', $id_tit_post);
+       $query = $builder->get();
+
+       return $query->getResultArray(); // Devuelve los resultados como un array asociativo
+   }
+
     
 }
