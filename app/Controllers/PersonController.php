@@ -15,12 +15,12 @@ use App\Models\TitulosModel;
 use App\Models\DetalleCapacitacionModel;
 use App\Models\DetalleAntLabModel;
 use App\Models\DetalleAntDocModel;
+use App\Models\MateriasModel;
+use App\Models\CondicionDocenteModel;
 
 //PRUEBA DE PAGINACION
 use App\Models\paginacion\Model1;
 use App\Models\paginacion\Model2;
-
-
 
 
 class PersonController extends Controller
@@ -34,263 +34,8 @@ class PersonController extends Controller
        //$this->valModel = new ValidacionModel();
     }
 
-     
 
-
-    public function cargarValoracion()
-    {
-        $db = \Config\Database::connect();
-
-    
-        $sql = $db->table('titulos');
-        //$sql->select('id_carrera,nombre_carrera');
-        $query = $sql->get();
-        $resultado = $query->getResultArray();
-
-        $data = ['titulo'=> 'Listado de Títulos', 'titulos'=>$resultado];
-        //return view('mostrarValidaciones', $data);
-
-        $sql2 = $db->table('materias');
-        //$sql->select('id_carrera,nombre_carrera');
-        $query2 = $sql2->get();
-        $resultado2 = $query2->getResultArray();
-
-        $data2 = ['titulo'=> 'Listado de Materias', 'materias'=>$resultado2];
-        //return view('mostrarValidaciones', $data);
-
-        $sql3 = $db->table('condicion_docente');
-        //$sql->select('id_carrera,nombre_carrera');
-        $query3 = $sql3->get();
-        $resultado3 = $query3->getResultArray();
-
-        $data3 = ['titulo'=> 'Listado de Materias', 'condicion'=>$resultado3];
-        
-
-        //echo $db->getLasTQuery(); //CON ESTO HAGO QUE SE VEA EN LA VISTA LA CONSULTA QUE ESTOY EJECUTANDO
-
-        
-        $modelo = new ValidacionModel();
-                
-        $ultimoCampoDeseado = $modelo->obtenerUltimoCampoDeseado();
-
-        // Pasar $ultimoCampoDeseado a la vista
-        //$data_id_valoracion['ultimoCampoDeseado'] = $ultimoCampoDeseado;
-
-              
-
-        helper('form');
-        return view('cargarValoracion', $data+$data2+$data3);
-    }
-    
-    /*
-    public function save()
-    {
-        $valPosModel = new ValoracionPostgradoModel();
-        $personModel = new PersonModel();
-
-        $valModel2 = new ValidacionModel();
-        //$val = $valModel2->getLastInsertedId();
-
-        //CON ESTO CONSULTO LA FUNCION DEL MODELO ValidacionModel PARA QUE ME TRAIGA EL ULTIMO ID DE LA TABLA
-        $ult=$valModel2->obtenerUltimoCampoDeseado();
-        echo "El último ID insertado con la otra funcion: $ult";
-        $ult = $ult + 1;
-        
-
-        // Recibimos los datos del formulario
-        $personsData = $this->request->getPost('persons');
-
-        $otraTablaModel = new TitulosPostgradoModel();
-        // Insertamos cada persona en la base de datos
-        foreach ($personsData as &$person) { // Usamos "&" para pasar por referencia y modificar directamente el arreglo original
-            // Obtener el valor seleccionado del campo de selección
-            $opcionSeleccionada = $person['opciones'];
-            // Extraer solo el número de la cadena
-            $numeroOpcion = intval(preg_replace('/[^0-9]+/', '', $opcionSeleccionada));
-            echo"entro en el foreach";
-            echo $numeroOpcion;
-
-            //$person['opciones'] = $numeroOpcion;
-            // Suponiendo que tienes un modelo para la tabla de otra tabla relacionada por el DNI
-            // Aquí obtienes el dato de la otra tabla basado en el DNI de la persona
-            //$datoRelacionado = $otraTablaModel->obtenerDatoRelacionadoPorDNI($person['dni']); // Por ejemplo
-            // Agregar el dato relacionado al array de datos de la persona
-           //echo $datoRelacionado;
-           //$person['nuevo_dato'] = $datoRelacionado;
-
-           $person['id_valoracion'] = $ult;
-           $person['id_titulo_postgrado'] = $numeroOpcion;
-           //$personModel->insert($person);
-           $valPosModel->insert($person);
-           
-            
-        }
-
-        
-        // Insertar la persona en la base de datos
-        //$personModel->insert($person);
-
-        //return redirect()->to(base_url('/'));
-    }
-    */
-
-    public function cargarValoracion2()
-    {
-
-        //ACA EMPIEZA EL PROCESO PARA GUARDAR EN LA TABLA `valoracion`
-        $db = \Config\Database::connect();
-
-        $p = ($_POST['id_titulo']);
-
-        $dni = ($_POST['dni']);
-        $j1 = ($_POST['j1']);
-        $j2 = ($_POST['j2']);
-        $j3 = ($_POST['j3']);
-        $id_m = ($_POST['id_materia']);
-        $condicion = ($_POST['id_condicion']);
-      
-        $arreglo = [
-        
-            'dni'=>$dni,
-            'id_titulo'=>$p,
-            'j1'=>$j1,
-            'j2'=>$j2,
-            'j3'=>$j3,
-            'id_materia_valoracion'=>$id_m,
-            'id_condicion'=>$condicion
-        ]; 
-
-        $valoracionModel = new ValidacionModel();
-       
-        //echo $this->materiaModel->insert($arreglo); // DEVUELVE EL ID DEL REGISTRO INGRESADO
-        $valoracionModel->insert($arreglo ,false); //SI LO PONGO ASÍ ME DEVUELVE 1 SI INSERTO Y 0 SINO
-        //$ii = $this->valoracionModel->getInsertID(); //CON ESTO OBTENGO EL ÚLTIMO ID INSERTADO
-
-
-
-        //ACA EMPIEZA EL PROCESO PARA GUARDAR EN LA TABLA `valoracion_postgrado`
-
-        $valPosModel = new ValoracionPostgradoModel();
-        $personModel = new PersonModel();
-
-        $valModel2 = new ValidacionModel();
-        //$val = $valModel2->getLastInsertedId();
-
-        //CON ESTO CONSULTO LA FUNCION DEL MODELO ValidacionModel PARA QUE ME TRAIGA EL ULTIMO ID DE LA TABLA
-        $ult=$valModel2->obtenerUltimoCampoDeseado();
-        echo "El último ID insertado con la otra funcion: $ult";
-        //$ult = $ult + 1;
-        
-
-        // Recibimos los datos del formulario
-        $personsData = $this->request->getPost('persons');
-
-        $otraTablaModel = new TitulosPostgradoModel();
-        // Insertamos cada persona en la base de datos
-        foreach ($personsData as &$person) { // Usamos "&" para pasar por referencia y modificar directamente el arreglo original
-            // Obtener el valor seleccionado del campo de selección
-            echo"ENTRO POR FOR DE TITULO DE POSTGRADO";
-            $opcionSeleccionada = $person['opciones'];
-            // Extraer solo el número de la cadena
-            $numeroOpcion = intval(preg_replace('/[^0-9]+/', '', $opcionSeleccionada));
-            //echo"entro en el foreach";
-            //echo $numeroOpcion;
-
-           $person['id_valoracion'] = $ult;
-           $person['id_titulo_postgrado'] = $numeroOpcion;
-           //$personModel->insert($person);
-           $valPosModel->insert($person);
-        }  
-
-
-        //ACA EMPIEZA EL PROCESO PARA GUARDAR EN LA TABLA `capacitacion`
-
-        $capModel = new CapacitacionModel();
-
-        $capsData = $this->request->getPost('caps');
-
-        $otraTablaModel = new TitulosPostgradoModel();
-        // Insertamos cada persona en la base de datos
-
-        if ($capsData !== null) {
-        foreach ($capsData as &$cap) { // Usamos "&" para pasar por referencia y modificar directamente el arreglo original
-            // Obtener el valor seleccionado del campo de selección
-
-            echo"ENTRO POR FOR";
-            $opcionSeleccionada = $cap['opciones'];
-            // Extraer solo el número de la cadena
-            $numeroOpcion = intval(preg_replace('/[^0-9]+/', '', $opcionSeleccionada));
-            //echo"entro en el foreach";
-            //echo $numeroOpcion;
-
-           $cap['id_valoracion'] = $ult;
-           $cap['id_detalle_capacitacion'] = $numeroOpcion;
-           //$personModel->insert($person);
-           $capModel->insert($cap);
-        }
-        } else {
-            echo"el arreglo caps viene vacío";
-        // Maneja la situación cuando no se reciben datos de capacitaciones
-        // Puedes mostrar un mensaje de error o realizar cualquier otra acción necesaria
-        }
-        
-
-        //ACA EMPIEZA EL PROCESO PARA GUARDAR EN LA TABLA `antecedentes_docentes`
-
-        //$valPosModel = new ValoracionPostgradoModel();
-        //$personModel = new PersonModel();
-
-        //$valModel2 = new ValidacionModel();
-        //$val = $valModel2->getLastInsertedId();
-
-        //CON ESTO CONSULTO LA FUNCION DEL MODELO ValidacionModel PARA QUE ME TRAIGA EL ULTIMO ID DE LA TABLA
-        //$ult=$valModel2->obtenerUltimoCampoDeseado();
-        //echo "El último ID insertado con la otra funcion: $ult";
-        //$ult = $ult + 1;
-        
-        $antModel = new AntecedentesDocModel();
-        // Recibimos los datos del formulario
-        $antData = $this->request->getPost('doc');
-
-        $otraTablaModel = new TitulosPostgradoModel();
-        // Insertamos cada persona en la base de datos
-        if ($antData !== null) {
-        foreach ($antData as &$ant) { // Usamos "&" para pasar por referencia y modificar directamente el arreglo original
-            // Obtener el valor seleccionado del campo de selección
-            $opcionSeleccionada = $ant['opciones'];
-            // Extraer solo el número de la cadena
-            $numeroOpcion = intval(preg_replace('/[^0-9]+/', '', $opcionSeleccionada));
-            //echo"entro en el foreach";
-            //echo $numeroOpcion;
-
-           $ant['id_valoracion'] = $ult;
-           $ant['cant_anos'] = $ult;
-           $ant['id_detalle_doc'] = $numeroOpcion;
-           //$personModel->insert($person);
-           $antModel->insert($ant);
-        }  
-        }
-        else {
-            echo"el arreglo antecedentes viene vacío";
-        
-        }
-
-        
-
-        return  redirect()->to(base_url().'/');
-
-        //redirect(base_url('http://localhost/framework_ci4_ministerio/public/cargarValoracion'));
-    }
-
-
-
-
-    //PRUEBA DE PAGINACION
-
-    //PRUEBA DE PAGINACION
-
-    //PRUEBA DE PAGINACION
-
+    //FUNCIÓN PARA CARGAR UNA NUEVA VALORACIÓN
     public function paso1()
     {
         $db = \Config\Database::connect();
@@ -482,15 +227,11 @@ class PersonController extends Controller
     $nuevoIdValoracion = $ult;// ? $ult + 1 : 1;
     //$nuevoIdValoracion++;
 
-    // Iterar sobre los datos de paso 2
     // Iterar sobre los datos de paso 2 y añadir el nuevo campo
     if (isset($datosPaso2['persons']) && is_array($datosPaso2['persons'])) {
         //echo "Datos del Paso 2:<br>";
         foreach ($datosPaso2['persons'] as &$person) {
-            //echo "Opción: " . $person['id_titulo_postgrado'] . "<br>";
-            //echo "Detalle: " . $person['detalle_valoracion_postgrado'] . "<br>";
-            //echo "Fecha: " . $person['fecha'] . "<br><br>";
-            
+                        
             // Agregar el campo 'id_valoracion'
             $person['id_valoracion'] = $nuevoIdValoracion;
             //echo "Id Valoración: " . $person['id_valoracion'] . "<br><br>";
@@ -500,14 +241,11 @@ class PersonController extends Controller
         echo "No hay datos en el Paso 2.<br>";
     }
 
-    // Iterar sobre los datos de paso 3
     // Iterar sobre los datos de paso 3 y añadir el nuevo campo
     if (isset($datosPaso3['persons2']) && is_array($datosPaso3['persons2'])) {
         //echo "Datos del Paso 3:<br>";
         foreach ($datosPaso3['persons2'] as &$person2) {
-            //echo "Opción: " . $person2['id_detalle_capacitacion'] . "<br>";
-            //echo "Detalle: " . $person2['detalle_capacitacion'] . "<br>";
-            //echo "Fecha: " . $person2['fecha'] . "<br><br>";
+           
             
             // Agregar el campo 'id_valoracion'
             $person2['id_valoracion'] = $nuevoIdValoracion;
@@ -518,14 +256,11 @@ class PersonController extends Controller
         echo "No hay datos en el Paso 3.<br>";
     }
 
-    // Iterar sobre los datos de paso 4
     // Iterar sobre los datos de paso 4 y añadir el nuevo campo
     if (isset($datosPaso4['persons3']) && is_array($datosPaso4['persons3'])) {
         //echo "Datos del Paso 4:<br>";
         foreach ($datosPaso4['persons3'] as &$person3) {
-            //echo "Opción: " . $person3['id_detalle_doc'] . "<br>";
-            //echo "Detalle: " . $person3['detalle_ant_doc'] . "<br>";
-            //echo "Fecha: " . $person3['fecha'] . "<br><br>";
+            
             
             // Agregar el campo 'id_valoracion'
             $person3['id_valoracion'] = $nuevoIdValoracion;
@@ -536,15 +271,11 @@ class PersonController extends Controller
         //echo "No hay datos en el Paso 4.<br>";
     }
 
-    // Iterar sobre los datos de paso 5
     // Iterar sobre los datos de paso 5 y añadir el nuevo campo
     if (isset($datosPaso5['persons4']) && is_array($datosPaso5['persons4'])) {
         //echo "Datos del Paso 5:<br>";
         foreach ($datosPaso5['persons4'] as &$person4) {
-            //echo "Opción: " . $person4['id_detalle_lab'] . "<br>";
-            //echo "Detalle: " . $person4['detalle_ant_lab'] . "<br>";
-            //echo "Fecha: " . $person4['fecha'] . "<br><br>";
-            
+                       
             // Agregar el campo 'id_valoracion'
             $person4['id_valoracion'] = $nuevoIdValoracion;
             //echo "Id Valoración: " . $person4['id_valoracion'] . "<br><br>";
@@ -559,7 +290,6 @@ class PersonController extends Controller
         $cap = new CapacitacionModel();
         $ant_doc = new AntecedentesDocModel();
         $ant_lab = new AntecedentesLabModel();
-        //ACA FALTA EL MODELO ANTECEDENTES LABORALES
 
           // Preparar los datos para la inserción
         $datosParaInsertar = $datosPaso2['persons'] ?? [];
@@ -602,15 +332,17 @@ class PersonController extends Controller
 
     }
 
-    public function buscar_valoracion()
+    //FUNCIÓN PARA BUSCAR VALORACIONES POR DOCENTE
+    public function buscar_valoracion_por_docente()
+    {
+        return view('buscar_valoración');
+    }
+
+    public function buscar_valoracion_por_docente2()
     {
         // Obtén el DNI del input (por ejemplo, de un formulario)
         $dni = $this->request->getPost('dni');
 
-        //echo"dni: ";
-        //echo $dni;
-        
-      
         $val = new ValidacionModel();
         $resultado = $val->getCodigoByDni($dni);
 
@@ -631,7 +363,6 @@ class PersonController extends Controller
         }
        
               
-        
         if ($id_valoracion) {
 
         //PUNTAJE DE TÍTULOS POSTGRADO    
@@ -676,9 +407,7 @@ class PersonController extends Controller
                 ];
             }
         }
-        //echo"arreglo puntajes3";
-        //print_r($puntajes3);
-        
+      
         //PUNTAJE DE ANTECEDENTES DOCOENTES    
         $antLab = new AntecedentesLabModel();
         $datosTabla4 = $antLab->getDatosById_detalle_lab($id_valoracion);//ACÁ PUEDE TRAER 
@@ -694,9 +423,6 @@ class PersonController extends Controller
                 ];
             }
         }
-
-        //echo"nuevo arreglo ant laborales";
-        //print_r($puntajes3);
 
         //PUNTAJE DE ANTECEDENTES DOCENTES 
         $antDoc = new AntecedentesDocModel();
@@ -732,10 +458,252 @@ class PersonController extends Controller
        
     }
 
-    public function index()
+    //FUNCIÓN PARA BUSCAR VALORACIONES POR MATERIA
+    public function Mostrar_Valoraciones_Por_Materia()
     {
-        return view('buscar_valoración');
+        $db = \Config\Database::connect();
+
+    
+        $sql2 = $db->table('materias');
+        //$sql->select('id_carrera,nombre_carrera');
+        $query2 = $sql2->get();
+        $resultado2 = $query2->getResultArray();
+
+        $data2 = ['titulo'=> 'Listado de Materias', 'materias'=>$resultado2];
+        //return view('mostrarValidaciones', $data);
+      
+        helper('form');
+        //return view('cargarValoracion', $data+$data2+$data3);
+        return view('Mostrar_Valoraciones_Por_Materia2', $data2);
     }
+
+    public function Mostrar_Valoraciones_Por_Materia3()
+    {
+         // Recuperar los datos del formulario
+         $datos = $this->request->getPost();
+
+        //ACA TENGO QUE HACER ALGO PARECIDO A mostrar_valoraciones(), PERO PARA LA MATERIA PARTICULAR
+
+        $db = \Config\Database::connect();
+
+
+        $validacionModel = new ValidacionModel();
+        
+        $mat = new MateriasModel();
+
+        $tit = new TitulosModel();
+
+        $con = new CondicionDocenteModel();
+
+        $valpos = new ValoracionPostgradoModel();
+
+        $Titulopostgrado = new TitulosPostgradoModel();
+        $cap = new CapacitacionModel();
+        $antLab = new AntecedentesLabModel();
+        $antDoc = new AntecedentesDocModel();
+
+    // Obtener todos los registros de la tabla 'valoracion'
+    $registros = $validacionModel->getValidacionesPorMateria($datos);
+
+    foreach ($registros as $registro) {
+        $dni = $registro['dni'];
+        $idTitulo = $registro['id_titulo'];
+        $j1 = $registro['j1'];
+        $j2 = $registro['j2'];
+        $j3 = $registro['j3'];
+        $idMateriaValoracion = $registro['id_materia_valoracion'];
+        $idCondicion = $registro['id_condicion'];
+        $id_va = $registro['id_valoracion'];
+      
+        $tt = $mat->getNombreMateria($idMateriaValoracion);
+        $materia = $tt[0]['nombre_materia'];
+        
+        $t = $tit->getDatosByCodigo($idTitulo);
+        $titulo_det = $t[0]['detalle_titulo'];
+
+        $c = $con->getDetalleConcidion($idCondicion);
+        $condicion = $c[0]['detalle_condicion'];
+
+        //PASOS PARA ARMAR EL PUNTAJE
+        $val = $valpos->getCodigoById_valoracion($id_va);
+        $suma = 0;
+        foreach($val as $vv) {
+            $valor = $vv['id_titulo_postgrado'];
+            $puntaje = $Titulopostgrado->getCodigoByPuntaje($valor);
+            $suma=$suma + $puntaje[0]['puntaje']; 
+        }
+        
+        $datos_capacitacion = $cap->getCodigoById_detallae_cap($id_va);
+        $ca = new DetalleCapacitacionModel();
+        foreach ($datos_capacitacion as $c) {
+            $capacitacion = $ca->find($c['id_detalle_capacitacion']);
+            $suma = $suma + $capacitacion['puntaje'];
+            
+        }
+        
+        $datosTabla4 = $antLab->getDatosById_detalle_lab($id_va);//ACÁ PUEDE TRAER 
+        $dl = new DetalleAntLabModel();
+        foreach ($datosTabla4 as $de) {
+           $detalle_la = $dl->find($de['id_detalle_lab']); // Suponiendo que el método find busca por la clave primaria
+           $suma = $suma + $detalle_la['puntaje'];
+        }
+                    
+        $datosTabla5 = $antDoc->getDatosById_ant_doc($id_va);//ACÁ PUEDE TRAER VARIOS
+        $do = new DetalleAntDocModel();
+        foreach ($datosTabla5 as $dc) {
+           $detalle_do = $do->find($dc['id_detalle_doc']); // Suponiendo que el método find busca por la clave primaria
+           $suma = $suma + $detalle_do['puntaje'];
+        }
+    
+        //PUNTAJE DEL TÍTULO DE BASE
+        
+        $datosTabla2 = $tit->getDatosByCodigo($idTitulo);//ACÁ TRAE UN DATO
+        $vv = $datosTabla2[0]['detalle_titulo']; 
+        $vv2 = $datosTabla2[0]['puntaje']; 
+    
+        $suma = $suma + $vv2;
+
+        //ARMO UN ARREGLO CON TODOS LOS DATOS QUE NECESITO MOSTRAR      
+        $titulo[] = [
+            'dni' => $dni,
+            'titulo_det' => $titulo_det,
+            'j1' => $j1,
+            'j2' => $j2,
+            'j3' => $j3,
+            'materia' => $materia,
+            'condicion' => $condicion,
+            'puntaje' => $suma,
+
+        ];
+      
+    } 
+    //PASAMOS LOS DATOS A LA VISTA  
+    return view('mostrarValoraciones', ['datosTabla1' => $titulo,]);
+
+        
+    } 
+
+    //FUNCIÓN PARA MOSTRAR TODAS LAS VALORACIONES
+    public function mostrar_valoraciones()
+    {
+            $db = \Config\Database::connect();
+
+
+            $validacionModel = new ValidacionModel();
+            
+            $mat = new MateriasModel();
+
+            $tit = new TitulosModel();
+
+            $con = new CondicionDocenteModel();
+
+            $valpos = new ValoracionPostgradoModel();
+
+            $Titulopostgrado = new TitulosPostgradoModel();
+            $cap = new CapacitacionModel();
+            $antLab = new AntecedentesLabModel();
+            $antDoc = new AntecedentesDocModel();
+
+        // Obtener todos los registros de la tabla 'valoracion'
+        $registros = $validacionModel->findAll();
+
+        //print_r($registros);
+        //$titulo=[];
+        // Iterar sobre los registros y trabajar con los valores
+        foreach ($registros as $registro) {
+            $dni = $registro['dni'];
+            $idTitulo = $registro['id_titulo'];
+            $j1 = $registro['j1'];
+            $j2 = $registro['j2'];
+            $j3 = $registro['j3'];
+            $idMateriaValoracion = $registro['id_materia_valoracion'];
+            $idCondicion = $registro['id_condicion'];
+            $id_va = $registro['id_valoracion'];
+            //echo $id_va;
+            //echo" ";
+            $tt = $mat->getNombreMateria($idMateriaValoracion);
+            $materia = $tt[0]['nombre_materia'];
+            
+            $t = $tit->getDatosByCodigo($idTitulo);
+            $titulo_det = $t[0]['detalle_titulo'];
+
+            $c = $con->getDetalleConcidion($idCondicion);
+            $condicion = $c[0]['detalle_condicion'];
+
+            //PASOS PARA ARMAR EL PUNTAJE
+            $val = $valpos->getCodigoById_valoracion($id_va);
+            $suma = 0;
+            foreach($val as $vv) {
+                $valor = $vv['id_titulo_postgrado'];
+                $puntaje = $Titulopostgrado->getCodigoByPuntaje($valor);
+                $suma=$suma + $puntaje[0]['puntaje']; 
+            }
+
+            
+            $datos_capacitacion = $cap->getCodigoById_detallae_cap($id_va);
+            $ca = new DetalleCapacitacionModel();
+            foreach ($datos_capacitacion as $c) {
+                $capacitacion = $ca->find($c['id_detalle_capacitacion']);
+                $suma = $suma + $capacitacion['puntaje'];
+                
+            }
+
+            
+            $datosTabla4 = $antLab->getDatosById_detalle_lab($id_va);//ACÁ PUEDE TRAER 
+            $dl = new DetalleAntLabModel();
+            foreach ($datosTabla4 as $de) {
+               $detalle_la = $dl->find($de['id_detalle_lab']); // Suponiendo que el método find busca por la clave primaria
+               $suma = $suma + $detalle_la['puntaje'];
+            }
+
+                        
+            $datosTabla5 = $antDoc->getDatosById_ant_doc($id_va);//ACÁ PUEDE TRAER VARIOS
+            $do = new DetalleAntDocModel();
+            foreach ($datosTabla5 as $dc) {
+               $detalle_do = $do->find($dc['id_detalle_doc']); // Suponiendo que el método find busca por la clave primaria
+               $suma = $suma + $detalle_do['puntaje'];
+            }
+        
+            //PUNTAJE DEL TÍTULO DE BASE
+            
+            $datosTabla2 = $tit->getDatosByCodigo($idTitulo);//ACÁ TRAE UN DATO
+            $vv = $datosTabla2[0]['detalle_titulo']; 
+            $vv2 = $datosTabla2[0]['puntaje']; 
+        
+            $suma = $suma + $vv2;
+    
+
+
+            //ARMO UN ARREGLO CON TODOS LOS DATOS QUE NECESITO MOSTRAR
+          
+            $titulo[] = [
+                'dni' => $dni,
+                'titulo_det' => $titulo_det,
+                'j1' => $j1,
+                'j2' => $j2,
+                'j3' => $j3,
+                'materia' => $materia,
+                'condicion' => $condicion,
+                'puntaje' => $suma,
+
+            ];
+
+          
+        } 
+       
+        //PASAMOS LOS DATOS A LA VISTA  
+        return view('mostrarValoraciones', ['datosTabla1' => $titulo,]);
+    
+
+         /*
+        
+     */  
+
+    }
+
+
+
+   
 
 }
 

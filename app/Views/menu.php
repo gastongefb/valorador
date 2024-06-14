@@ -55,7 +55,7 @@
             </a>
             <ul class="dropdown-menu">
              <li><a class="dropdown-item" href="<?= base_url('/Docente/create') ?>"> Agregar</a></li>
-              <li><a class="dropdown-item" href="<?php echo base_url('/busqueda') ?>">Buscar</a></li>
+              <li><a class="dropdown-item" href="<?php echo base_url('/Docente') ?>">Buscar</a></li>
               <li><a class="dropdown-item" href="<?php echo base_url('/Docente') ?>">Listar</a></li>
 
               <li><a class="dropdown-item" href="#"></a></li>
