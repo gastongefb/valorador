@@ -15,7 +15,7 @@
 				<div class="card">
 					<div class="card-body d-flex justify-content-between align-items-center">
 						Si no se encuentra el docente ->
-						<a class="btn btn-primary btn-sm" href="<?= base_url('Docente/create') ?>">AGREGAR DOCENTE</a>
+						<a class="btn btn-primary btn-sm" href="<?= base_url('/Docente/create') ?>">AGREGAR DOCENTE</a>
 					</div>
 				</div>
 			</div>
@@ -67,7 +67,7 @@
                   
                     <!-- <a href="<?= route_to('Docente.edit', $Docente["id"]) ?>">Editar</a> --> 
 
-                    <form id="MF<?= $Docente['id'] ?>" action="<?= base_url() ?><?= route_to('Docente.destroy', $Docente["id"]) ?>" method="post" style="display: inline-block;">
+                    <form  action="<?= base_url() ?><?= route_to('Docente.destroy', $Docente["id"]) ?>" method="post" style="display: inline-block;">
                         <?= csrf_field() ?>
                         <input type="hidden" name="id" value="<?= $Docente['id'] ?>">
                         <input type="hidden" name="_method" value="delete">
