@@ -57,49 +57,6 @@ class MateriasController extends BaseController
     }
 
     
-    //FUNCIÓN PARA MOSTRAR LOS PLANES DE ESTUDIO
-    public function mostrarPlanes()
-    {
-
-        $db = \Config\Database::connect();
-
-    
-            $sql = $db->table('carreras');
-            //$sql->select('id_carrera,nombre_carrera');
-            $query = $sql->get();
-            $resultado = $query->getResultArray();
-           
-            $data = ['titulo'=> 'Listado de Validaciones', 'carreras'=>$resultado];
-            //return view('mostrarValidaciones', $data);
-
-        helper('form');
-        return view('mostrarPlanes/mostrarPlanes2',$data);
-
-    }
-
-    public function mostrarPlanes3()
-    {
-
-
-        {
-            $db = \Config\Database::connect();
-
-            $var = ($_POST['id_carrera']);
-            //echo $var;
-            
-            $sql = $db->table('materias m');
-            $sql->select('m.*');
-            $sql->where('id_carrera_materia', $var);
-            $query = $sql->get();
-            $resultado = $query->getResultArray();
-          
-            $data = ['titulo'=> 'Listado de Validaciones', 'validaciones'=>$resultado];
-            return view('mostrarPlanes/mostrarPlanes4', $data);
-            
-        }
-
-    }
-    
     //FUNCIÓN PARA MOSTRAR LAS MATERIAS
     public function mostrar_materias()
     {
