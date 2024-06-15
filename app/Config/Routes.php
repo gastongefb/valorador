@@ -6,7 +6,8 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-//$routes->get('/', 'Home::index');
+ //CARGA LA RUTA POR DEFECTO
+$routes->get('/', 'Home::index');
 //$routes->get('/validacion', 'Validacion::index');
 //$routes->get('/buscarporid/(:num)', 'Validacion::buscarporid/$1');
 //$routes->get('/insertar', 'Validacion::insertar');
