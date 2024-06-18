@@ -112,7 +112,7 @@ class MateriasController extends BaseController
         echo $this->materiaModel->insert($arreglo ,false); //SI LO PONGO ASÍ ME DEVUELVE 1 SI INSERTO Y 0 SINO
         echo $this->materiaModel->getInsertID(); //CON ESTO OBTENGO EL ÚLTIMO ID INSERTADO
 
-        return  redirect()->to(base_url().'/');
+        return  redirect()->to(base_url().'');
 
         
     }

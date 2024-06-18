@@ -18,6 +18,8 @@ use App\Models\DetalleAntDocModel;
 use App\Models\MateriasModel;
 use App\Models\CondicionDocenteModel;
 
+use CodeIgniter\I18n\Time;
+
 //PRUEBA DE PAGINACION
 use App\Models\paginacion\Model1;
 use App\Models\paginacion\Model2;
@@ -328,7 +330,8 @@ class PersonController extends Controller
         session()->remove('datos_paso4');
         session()->remove('datos_paso5');
 
-        return "Datos guardados correctamente.";
+        //return "Datos guardados correctamente.";
+        return  redirect()->to(base_url().'');
 
     }
 
@@ -396,13 +399,28 @@ class PersonController extends Controller
         $cap = new CapacitacionModel();
         $datosTabla3 = $cap->getCodigoById_detallae_cap($id_valoracion);//ACÁ PUEDE TRAER VARIOS
 
+        $fechaActual = Time::now(); //TRAE FECHA ACTUAL
+
         $ca = new DetalleCapacitacionModel();
         foreach ($datosTabla3 as $c) {
             $capacitacion = $ca->find($c['id_detalle_capacitacion']); // Suponiendo que el método find busca por la clave primaria
             if ($capacitacion) {
+                $fechaGuardada = Time::parse($c['fecha']); //CONVIERTO LA FECHA EN UN OBJETO TIME
+                $diferencia = $fechaGuardada->difference($fechaActual);
+                $diferenciaAnios = $diferencia->getYears();
+                $diferenciaMeses = $diferencia->getMonths();
+                $diferenciaDias = $diferencia->getDays();//CALCULAR LA DIFERENCIA DE AÑOS
+                if ($diferenciaAnios < 5 || ($diferenciaAnios == 5 && $diferenciaMeses == 0 && $diferenciaDias == 0)) {
+                    $punt= $capacitacion['puntaje'];
+                    echo"entro por el si";
+                }
+                else
+                {
+                    $punt = 0;
+                }
                 $puntajes3[] = [
                     'id_detalle_capacitacion' => $c['id_detalle_capacitacion'],
-                    'puntaje' => $capacitacion['puntaje'],
+                    'puntaje' => $punt,
                     'detalle' => $c['detalle_capacitacion'],
                 ];
             }
@@ -416,9 +434,10 @@ class PersonController extends Controller
         foreach ($datosTabla4 as $de) {
             $detalle_la = $dl->find($de['id_detalle_lab']); // Suponiendo que el método find busca por la clave primaria
             if ($detalle_la) {
+                $tot = $de['fecha'] * $detalle_la['puntaje'];//CALCULA EL PUNTAJE FINAL EN BASE A LA CANTIDAD DE AÑOS
                 $puntajes4[] = [
                     'id_detalle_lab' => $de['id_detalle_lab'],
-                    'puntaje' => $detalle_la['puntaje'],
+                    'puntaje' => $tot,
                     'detalle' => $de['detalle_ant_lab'],
                 ];
             }
@@ -431,10 +450,11 @@ class PersonController extends Controller
         $do = new DetalleAntDocModel();
         foreach ($datosTabla5 as $dc) {
             $detalle_do = $do->find($dc['id_detalle_doc']); // Suponiendo que el método find busca por la clave primaria
+            $tot2 = $dc['fecha'] * $detalle_do['puntaje'];//CALCULA EL PUNTAJE FINAL EN BASE A LA CANTIDAD DE AÑOS
             if ($detalle_do) {
                 $puntajes5[] = [
                     'id_detalle_doc' => $dc['id_detalle_doc'],
-                    'puntaje' => $detalle_do['puntaje'],
+                    'puntaje' => $tot2,
                     'detalle' => $dc['detalle_ant_doc'],
                 ];
             }
@@ -505,6 +525,8 @@ class PersonController extends Controller
     // Obtener todos los registros de la tabla 'valoracion'
     $registros = $validacionModel->getValidacionesPorMateria($datos);
 
+    $fechaActual = Time::now(); //TRAE FECHA ACTUAL
+
     foreach ($registros as $registro) {
         $dni = $registro['dni'];
         $idTitulo = $registro['id_titulo'];
@@ -537,7 +559,18 @@ class PersonController extends Controller
         $ca = new DetalleCapacitacionModel();
         foreach ($datos_capacitacion as $c) {
             $capacitacion = $ca->find($c['id_detalle_capacitacion']);
-            $suma = $suma + $capacitacion['puntaje'];
+            //$suma = $suma + $capacitacion['puntaje'];
+
+            $fechaGuardada = Time::parse($c['fecha']); //CONVIERTO LA FECHA EN UN OBJETO TIME
+            $diferencia = $fechaGuardada->difference($fechaActual);
+            $diferenciaAnios = $diferencia->getYears();
+            $diferenciaMeses = $diferencia->getMonths();
+            $diferenciaDias = $diferencia->getDays();//CALCULAR LA DIFERENCIA DE AÑOS
+            if ($diferenciaAnios < 5 || ($diferenciaAnios == 5 && $diferenciaMeses == 0 && $diferenciaDias == 0)) {
+                //$punt= $capacitacion['puntaje'];
+                $suma = $suma + $capacitacion['puntaje'];
+            }
+           
             
         }
         
@@ -545,14 +578,16 @@ class PersonController extends Controller
         $dl = new DetalleAntLabModel();
         foreach ($datosTabla4 as $de) {
            $detalle_la = $dl->find($de['id_detalle_lab']); // Suponiendo que el método find busca por la clave primaria
-           $suma = $suma + $detalle_la['puntaje'];
+           $tot = $de['fecha'] * $detalle_la['puntaje'];//CALCULA EL PUNTAJE FINAL EN BASE A LA CANTIDAD DE AÑOS
+           $suma = $suma + $tot;
         }
                     
         $datosTabla5 = $antDoc->getDatosById_ant_doc($id_va);//ACÁ PUEDE TRAER VARIOS
         $do = new DetalleAntDocModel();
         foreach ($datosTabla5 as $dc) {
            $detalle_do = $do->find($dc['id_detalle_doc']); // Suponiendo que el método find busca por la clave primaria
-           $suma = $suma + $detalle_do['puntaje'];
+           $tot2 = $dc['fecha'] * $detalle_do['puntaje'];//CALCULA EL PUNTAJE FINAL EN BASE A LA CANTIDAD DE AÑOS
+           $suma = $suma + $tot2;
         }
     
         //PUNTAJE DEL TÍTULO DE BASE
@@ -604,6 +639,8 @@ class PersonController extends Controller
             $antLab = new AntecedentesLabModel();
             $antDoc = new AntecedentesDocModel();
 
+            $fechaActual = Time::now(); //TRAE FECHA ACTUAL
+
         // Obtener todos los registros de la tabla 'valoracion'
         $registros = $validacionModel->findAll();
 
@@ -644,7 +681,20 @@ class PersonController extends Controller
             $ca = new DetalleCapacitacionModel();
             foreach ($datos_capacitacion as $c) {
                 $capacitacion = $ca->find($c['id_detalle_capacitacion']);
-                $suma = $suma + $capacitacion['puntaje'];
+                //$suma = $suma + $capacitacion['puntaje'];
+
+                $fechaGuardada = Time::parse($c['fecha']); //CONVIERTO LA FECHA EN UN OBJETO TIME
+                $diferencia = $fechaGuardada->difference($fechaActual);
+                $diferenciaAnios = $diferencia->getYears();
+                $diferenciaMeses = $diferencia->getMonths();
+                $diferenciaDias = $diferencia->getDays();//CALCULAR LA DIFERENCIA DE AÑOS
+                if ($diferenciaAnios < 5 || ($diferenciaAnios == 5 && $diferenciaMeses == 0 && $diferenciaDias == 0)) {
+                  
+                    $suma = $suma + $capacitacion['puntaje'];
+                    //echo"entro por el si";
+                }
+               
+
                 
             }
 
@@ -653,7 +703,8 @@ class PersonController extends Controller
             $dl = new DetalleAntLabModel();
             foreach ($datosTabla4 as $de) {
                $detalle_la = $dl->find($de['id_detalle_lab']); // Suponiendo que el método find busca por la clave primaria
-               $suma = $suma + $detalle_la['puntaje'];
+               $tot = $de['fecha'] * $detalle_la['puntaje'];//CALCULA EL PUNTAJE FINAL EN BASE A LA CANTIDAD DE AÑOS
+               $suma = $suma + $tot;
             }
 
                         
@@ -661,7 +712,8 @@ class PersonController extends Controller
             $do = new DetalleAntDocModel();
             foreach ($datosTabla5 as $dc) {
                $detalle_do = $do->find($dc['id_detalle_doc']); // Suponiendo que el método find busca por la clave primaria
-               $suma = $suma + $detalle_do['puntaje'];
+               $tot2 = $dc['fecha'] * $detalle_do['puntaje'];//CALCULA EL PUNTAJE FINAL EN BASE A LA CANTIDAD DE AÑOS
+               $suma = $suma + $tot2;
             }
         
             //PUNTAJE DEL TÍTULO DE BASE
