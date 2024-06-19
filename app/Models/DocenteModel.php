@@ -68,4 +68,14 @@ class DocenteModel extends Model
         return $this->delete($id_docente);
     }
 
+    public function getDatosDocentes($dni)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->select('*');
+        $builder->where('dni', $dni);
+        $query = $builder->get();
+ 
+        return $query->getResultArray(); // Devuelve los resultados como un array asociativo
+    }
+
 }

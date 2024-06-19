@@ -17,8 +17,11 @@ use App\Models\DetalleAntLabModel;
 use App\Models\DetalleAntDocModel;
 use App\Models\MateriasModel;
 use App\Models\CondicionDocenteModel;
+use App\Models\DocenteModel;
 
 use CodeIgniter\I18n\Time;
+
+use App\Libraries\Pdf;
 
 //PRUEBA DE PAGINACION
 use App\Models\paginacion\Model1;
@@ -351,6 +354,11 @@ class PersonController extends Controller
 
         $resul = $val->getCodigoByTitulo($dni);
 
+        $doc = new DocenteModel();
+        $d = $doc->getDatosDocentes($dni);
+
+        //print_r($d);
+
         if (!empty($resultado)) {
             $id_valoracion = $resultado[0]['id_valoracion'];
             
@@ -364,6 +372,21 @@ class PersonController extends Controller
         } else {
             // Manejo de error: no se encontró id_valoracion para el DNI dado
         }
+
+        if (!empty($d)) {
+            $nombre = $d[0]['nombre'];
+            $apellido = $d[0]['apellido'];
+            
+        } else {
+            // Manejo de error: no se encontró id_valoracion para el DNI dado
+        }
+        
+        $puntajes6[] = [
+            'dni' => $dni,
+            'nombre' => $nombre,
+            'apellido' => $apellido,
+           
+        ];
        
               
         if ($id_valoracion) {
@@ -412,7 +435,7 @@ class PersonController extends Controller
                 $diferenciaDias = $diferencia->getDays();//CALCULAR LA DIFERENCIA DE AÑOS
                 if ($diferenciaAnios < 5 || ($diferenciaAnios == 5 && $diferenciaMeses == 0 && $diferenciaDias == 0)) {
                     $punt= $capacitacion['puntaje'];
-                    echo"entro por el si";
+                    //echo"entro por el si";
                 }
                 else
                 {
@@ -468,6 +491,7 @@ class PersonController extends Controller
                 'datosTabla3' => $puntajes3,
                 'datosTabla4' => $puntajes4,
                 'datosTabla5' => $puntajes5,
+                'datosTabla6' => $puntajes6,
 
             ]);
            
@@ -610,6 +634,14 @@ class PersonController extends Controller
             'puntaje' => $suma,
 
         ];
+
+        // Ordenar por sexo y luego por edad
+        usort($titulo, function($a, $b) {
+            if ($a['condicion'] === $b['condicion']) {
+                return $b['puntaje'] - $a['puntaje'];
+            }
+            return ($a['condicion'] === 'Docente') ? -1 : 1;
+        });
       
     } 
     //PASAMOS LOS DATOS A LA VISTA  
@@ -740,6 +772,14 @@ class PersonController extends Controller
 
             ];
 
+             // Ordenar por sexo y luego por edad
+        usort($titulo, function($a, $b) {
+            if ($a['condicion'] === $b['condicion']) {
+                return $b['puntaje'] - $a['puntaje'];
+            }
+            return ($a['condicion'] === 'Docente') ? -1 : 1;
+        });
+
           
         } 
        
@@ -752,6 +792,8 @@ class PersonController extends Controller
      */  
 
     }
+
+    
 
 
 
