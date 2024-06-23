@@ -38,4 +38,14 @@ class MateriasModel extends Model
        return $query->getResultArray(); // Devuelve los resultados como un array asociativo
    }
 
+   /**
+     * Method to search for materias by name starting with a given term
+     * @param string $term
+     * @return array
+     */
+    public function searchMaterias($term)
+    {
+        return $this->like('nombre_materia', $term, 'after')->findAll();
+    }
+
 }

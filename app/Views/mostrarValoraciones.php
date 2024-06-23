@@ -4,9 +4,11 @@
 
 <?php echo $this->section('contenido'); ?>
 
-<h1>Valoración</h1> 
-    
-<h2>Listado de Valoraciones</h2>
+
+<br>   
+<h2 class="text-center">Listado de Valoraciones</h2>
+<br>
+
   
   <table class="table">
   <thead>
@@ -47,7 +49,7 @@
 <br>
 <br>
 <br>
-    
+
 
 
 <?php echo $this->endSection() ;?>

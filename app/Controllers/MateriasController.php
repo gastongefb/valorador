@@ -17,6 +17,8 @@ use App\Models\AntecedentesLabModel;
 use App\Models\DetalleCapacitacionModel;
 use App\Models\DetalleAntLabModel;
 use App\Models\DetalleAntDocModel;
+use App\Models\CarrerasModel;
+
 
 class MateriasController extends BaseController
 {
@@ -117,7 +119,73 @@ class MateriasController extends BaseController
         
     }
 
-    
+    //FUNCIÓN PARA ACTUALIZAR MATERIAS
+    public function act()
+    {
+        return view('materias/search');
+    }
+
+    public function search()
+    {
+        $model = new MateriasModel();
+        $term = $this->request->getGet('search'); // Use getGet instead of getVar for GET requests
+
+        $data['materias'] = $model->searchMaterias($term);
+
+        return view('materias/list', $data);
+    }
+
+    public function edit($id)
+    {
+        $car = new CarrerasModel();
+        $data2['carrera'] = $car->traerCarreras();
+        $model = new MateriasModel();
+        $data['materia'] = $model->find($id);
+
+        // Combina los arrays para pasarlos a la vista
+        $data = array_merge($data, $data2);
+
+        return view('materias/edit', $data);
+    }
+
+    public function update($id)
+    {
+        $model = new MateriasModel();
+
+        $data = [
+            'nombre_materia' => $this->request->getVar('nombre_materia'),
+            'cuatrimestre'   => $this->request->getVar('cuatrimestre'),
+            'id_carrera_materia' => $this->request->getVar('id_carrera'),
+        ];
+        
+           log_message('debug', 'Datos a actualizar: ' . print_r($data, true)); // Registro de depuración
+
+        if ($model->update($id, $data)) {
+            // Obtener los datos actualizados de la materia
+            $updatedData['materia'] = $model->find($id);
+
+             // Obtener el ID de la carrera desde la materia actualizada
+            $id_ca = $updatedData['materia']['id_carrera_materia'];
+            $car = new CarrerasModel();
+            $carreraData = $car->traerUnaCarrera($id_ca);
+
+            // Registro de depuración para los datos de la carrera
+            log_message('debug', 'Datos de la carrera: ' . print_r($carreraData, true));
+
+            // Asegúrate de que traerUnaCarrera devuelve un array asociativo con los datos de la carrera
+            if ($carreraData && isset($carreraData['nombre_carrera'])) {
+               $updatedData['materia']['nombre_carrera'] = $carreraData['nombre_carrera'];
+            } 
+            else{
+                   $updatedData['materia']['nombre_carrera'] = 'Carrera no encontrada';
+                }
+
+          return view('materias/updated', $updatedData);
+        } 
+        else{
+               return redirect()->back()->with('error', 'No se pudo actualizar la materia');
+            }
+    }
       
 
     public function insertar()

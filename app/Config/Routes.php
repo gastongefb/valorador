@@ -7,12 +7,19 @@ use CodeIgniter\Router\RouteCollection;
  */
 
  //CARGA LA RUTA POR DEFECTO
-$routes->get('/', 'Home::index');
+//$routes->get('/', 'Home::index');
 //$routes->get('/validacion', 'Validacion::index');
 //$routes->get('/buscarporid/(:num)', 'Validacion::buscarporid/$1');
 //$routes->get('/insertar', 'Validacion::insertar');
 //$routes->get('/actualizar', 'Validacion::actualizar');
 //$routes->get('/eliminar', 'Validacion::eliminar');
+
+// para login
+$routes->get('/', 'Home::index');
+$routes->get('/inicio', 'Home::inicio');
+$routes->post('/login', 'Home::login');
+$routes->get('/salir', 'Home::salir');
+//fin login
 
 //RUTAS PATA MOSTRAR PLANES DE ESTUDIO
 $routes->get('/mostrarPlanes', 'PlanesController::mostrarPlanes');
@@ -24,6 +31,12 @@ $routes->get('/mostrar_materias', 'MateriasController::mostrar_materias');
 //RUTAS PARA CARGAR UNA NUEVA MATERIA
 $routes->get('/insertar_materia1', 'MateriasController::insertar_materia1');
 $routes->post('/insertar_materia2', 'MateriasController::insertar_materia2');
+
+//RUTAS PARA EDITAR MATERIAS
+$routes->get('/materias', 'MateriasController::act');
+$routes->get('/search', 'MateriasController::search');
+$routes->get('/edit/(:num)', 'MateriasController::edit/$1');
+$routes->post('/update/(:num)', 'MateriasController::update/$1');
 
 //RUTAS PARA CARGAR NUEVA VALORACIÓN
 $routes->get('cargar_valoracion', 'PersonController::paso1');

@@ -16,17 +16,16 @@ class CarrerasModel extends Model
 
     protected $allowedFields = ['nombre_carrera'];
 
-    /*
-    public function getMaterias()
+  
+    public function traerCarreras()
     {
         return $this->findAll();
     }
-
-    public function getUnaMateria($id_m)
+ 
+    
+    public function traerUnaCarrera($id)
     {
-        $db = \Config\Database::connect();
-        $builder = $this->db->query("select * from materias where id_materia = $id_m");
-        return $builder->getResult();
+        return $this->where('id_carrera', $id)->first();
     }
-    */
+
 }
