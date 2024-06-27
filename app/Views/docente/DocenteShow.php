@@ -33,15 +33,11 @@
      <div class="card-body d-flex justify-content-between align-items-center">
 						 
 						<a href="<?php echo base_url('Docente') ?>" class="btn btn-primary btn-sm">Volver</a>
-            <form action="<?php //echo base_url('editar_docente') ?>" method="post" autocomplete="off">
-              <input type="hidden"   name="id" value="$Docente['id']">
-                <div>  
+            
+            <a class="btn btn-secondary" href="<?= base_url() ?><?= route_to('Docente.edit', $Docente["id"]) ?>">Editar</a>
 
-                <button type="submit" class="btn btn-secondary">Editar Datos</button>
-                  </div>
-                </form>
+          
         </div>
-     
    <br>
    <br>
    <br>

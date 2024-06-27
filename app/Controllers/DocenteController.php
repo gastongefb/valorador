@@ -44,14 +44,14 @@ class DocenteController extends BaseController
     public function edit($id)
     {
         $Docente = $this->DocenteModel->getDocente($id);
-       return view('Docente/edit', compact('Docente'));
+       return view('Docente/DocenteEdit', compact('Docente'));
     }
 
     public function update($id)
     {
         $data = $this->request->getPost();
         $this->DocenteModel->updateDocente($id, $data);
-        return redirect()->route('Docente.index');
+        return redirect()->route('Docente');
     }
 
     public function destroy($id)

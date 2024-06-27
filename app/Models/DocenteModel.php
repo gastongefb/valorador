@@ -52,6 +52,20 @@ class DocenteModel extends Model
         return $this->save($data);
     }
 
+    public function updateDocente($id,$data)
+    {
+
+       // $data = $this->hashPassword($data);
+
+     //var_dump($data);
+       // exit();
+        unset($data['id']);
+        return $this->update //($id,$data);
+        ($id, 
+            $data
+          );
+    }
+
     protected function hashPassword(array $data)
     {
         if (! isset($data['clave'])) {

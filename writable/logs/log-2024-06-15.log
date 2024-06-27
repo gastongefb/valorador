@@ -1,0 +1,52 @@
+CRITICAL - 2024-06-15 00:14:20 --> Error: Call to a member function getPost() on null
+in APPPATH\Models\DocenteModel.php on line 64.
+ 1 APPPATH\Controllers\DocenteController.php(53): App\Models\DocenteModel->updateDocente('26', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\DocenteController->update('26')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DocenteController))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-06-15 00:16:16 --> ErrorException: Array to string conversion
+in APPPATH\Models\DocenteModel.php on line 64.
+ 1 APPPATH\Models\DocenteModel.php(64): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\xampp\\htdocs\\valoradorG2\\valorador\\app\\Models\\DocenteModel.php', 64)
+ 2 APPPATH\Controllers\DocenteController.php(53): App\Models\DocenteModel->updateDocente('26', [...])
+ 3 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\DocenteController->update('26')
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DocenteController))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-06-15 00:16:58 --> ErrorException: Array to string conversion
+in APPPATH\Models\DocenteModel.php on line 64.
+ 1 APPPATH\Models\DocenteModel.php(64): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'C:\\xampp\\htdocs\\valoradorG2\\valorador\\app\\Models\\DocenteModel.php', 64)
+ 2 APPPATH\Controllers\DocenteController.php(53): App\Models\DocenteModel->updateDocente('26', [...])
+ 3 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\DocenteController->update('26')
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DocenteController))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-06-15 00:18:07 --> ParseError: syntax error, unexpected token "(", expecting identifier or variable or "{" or "$"
+in APPPATH\Models\DocenteModel.php on line 64.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(290): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\valoradorG2\\valorador\\app\\Models\\DocenteModel.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(266): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Models\\DocenteModel')
+ 3 APPPATH\Controllers\DocenteController.php(13): CodeIgniter\Autoloader\Autoloader->loadClass('App\\Models\\DocenteModel')
+ 4 SYSTEMPATH\CodeIgniter.php(913): App\Controllers\DocenteController->__construct()
+ 5 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-06-15 00:22:52 --> LogicException: No validation rules for the placeholder: id
+in SYSTEMPATH\Validation\Validation.php on line 792.
+ 1 SYSTEMPATH\Validation\Validation.php(157): CodeIgniter\Validation\Validation->fillPlaceholders([...], [...])
+ 2 SYSTEMPATH\BaseModel.php(1534): CodeIgniter\Validation\Validation->run([...], null, null)
+ 3 SYSTEMPATH\BaseModel.php(959): CodeIgniter\BaseModel->validate([...])
+ 4 SYSTEMPATH\Model.php(807): CodeIgniter\BaseModel->update([...], [...])
+ 5 APPPATH\Models\DocenteModel.php(62): CodeIgniter\Model->update('26', [...])
+ 6 APPPATH\Controllers\DocenteController.php(53): App\Models\DocenteModel->updateDocente('26', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\DocenteController->update('26')
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DocenteController))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-06-15 00:23:24 --> CodeIgniter\HTTP\Exceptions\HTTPException: The route for "Docente.index" cannot be found.
+in SYSTEMPATH\HTTP\RedirectResponse.php on line 62.
+ 1 SYSTEMPATH\HTTP\RedirectResponse.php(62): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidRedirectRoute('Docente.index')
+ 2 APPPATH\Controllers\DocenteController.php(54): CodeIgniter\HTTP\RedirectResponse->route(false)
+ 3 SYSTEMPATH\CodeIgniter.php(941): App\Controllers\DocenteController->update('26')
+ 4 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\DocenteController))
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
