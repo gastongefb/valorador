@@ -7,7 +7,7 @@ use CodeIgniter\Router\RouteCollection;
  */
 
  //CARGA LA RUTA POR DEFECTO
-$routes->get('/', 'Home::index');
+//$routes->get('/', 'Home::index');
 //$routes->get('/validacion', 'Validacion::index');
 //$routes->get('/buscarporid/(:num)', 'Validacion::buscarporid/$1');
 //$routes->get('/insertar', 'Validacion::insertar');
@@ -78,7 +78,7 @@ $routes->post('/Docente', 'DocenteController::store');
 $routes->get('/Docente/(:num)', 'DocenteController::show/$1');
 $routes->get('/Docente/(:num)/edit', 'DocenteController::edit/$1',[ 'as' => 'Docente.edit' ]); 
 $routes->put('/Docente/:id', 'DocenteController::update');
-$routes->post('/Docente/(:num)/update', 'DocenteController::update/$1',[ 'as' => 'Docente.update' ]); 
+$routes->post('/Docente/update/(:num)', 'DocenteController::update/$1',[ 'as' => 'Docente.update' ]); 
 $routes->delete('/Docente/(:num)', 'DocenteController::destroy/$1',[ 'as' => 'Docente.destroy' ]); 
 
 //$routes->delete('/Docente/:num', 'DocenteController::destroy');

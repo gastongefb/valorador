@@ -11,6 +11,7 @@ class DocenteController extends BaseController
     public function __construct()
     {
         $this->DocenteModel = new DocenteModel();
+        $this->session = \Config\Services::session();
     }
 
     public function index()
@@ -51,11 +52,18 @@ class DocenteController extends BaseController
     {
         $data = $this->request->getPost();
         $this->DocenteModel->updateDocente($id, $data);
-        return redirect()->route('Docente');
+       // return redirect()->route('Docente');
+    //    return redirect()->to('/Docente')->with('success', 'Docente actualizado correctamente');
+        $this->session->setFlashdata('success', 'Docente actualizado correctamente');
+    return redirect()->route('Docente');
     }
+     
+
 
     public function destroy($id)
     {
+       // var_dump($id);
+        //exit();
         $this->DocenteModel->deleteDocente($id);
         //return redirect()->route('Docente.DocenteIndex');
         return redirect()->route('Docente');
