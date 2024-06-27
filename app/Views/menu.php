@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">ISFT ANGACO</a>
+    <a class="navbar-brand" href="#">ISFT ANGACO - usuario <?php echo session('usuario');?></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -27,6 +27,7 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="<?php echo base_url('/mostrar_materias') ?> ">Mostrar Materias</a></li>
               <li><a class="dropdown-item" href="<?php echo base_url('/insertar_materia1') ?>">Cargar Materias</a></li>
+              <li><a class="dropdown-item" href="<?php echo base_url('/materias') ?>">Actualizar Materias</a></li>
 
 
             </ul>
@@ -37,7 +38,7 @@
             </a>
             <ul class="dropdown-menu">
              <li><a class="dropdown-item" href="<?php echo base_url('/cargar_valoracion') ?>"> Cargar Valoración</a></li>
-              <li><a class="dropdown-item" href="<?php echo base_url('/busqueda') ?>">Buscar</a></li>
+              <li><a class="dropdown-item" href="<?php echo base_url('/buscar_valoracion_por_docente') ?>">Buscar Valoración por docente</a></li>
               <li><a class="dropdown-item" href="<?php echo base_url('/Mostrar_Valoraciones_Por_Materia') ?>">Mostrar Valoración por Materia</a></li>
               <li><a class="dropdown-item" href="<?php echo base_url('/mostrar_valoraciones') ?>">Mostrar Todas las Valoraciones</a></li>
 
@@ -60,6 +61,10 @@
 
               <li><a class="dropdown-item" href="#"></a></li>
             </ul>
+          </li>
+          <!-- agrego opcion salir en el menu-->
+          <li class="nav-item active">
+            <a class="nav-link" href="<?php echo base_url('/salir')?>">Salir <span class="sr-only">(current)</span> </a>
           </li>
 
         </ul>

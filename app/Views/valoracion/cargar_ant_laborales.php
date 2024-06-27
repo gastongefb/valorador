@@ -33,7 +33,7 @@
         <input type="text" name="persons4[1][detalle_ant_lab]" id="detalle_ant_lab1">
         <br>
         <br>
-        <label for="fecha1">Fecha:</label>
+        <label for="fecha1">Cantidad de años:</label>
         <input type="text" name="persons4[1][fecha]" id="fecha1"><br>
         <br>       
         <button type="button" class="removePerson4">Eliminar Ant. Doc.</button>
@@ -63,7 +63,7 @@
                         <input type="text" name="persons4[${personCount}][detalle_ant_lab]" id="detalle_ant_doc${personCount}">
                         <br>
                         <br>
-                        <label for="fecha${personCount}">Fecha:</label>
+                        <label for="fecha${personCount}">Cantidad de años:</label>
                         <input type="text" name="persons4[${personCount}][fecha]" id="fecha${personCount}"><br>
                         <br>                        
                         <button type="button" class="removePerson4">Eliminar Ant. Lab.</button>

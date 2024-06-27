@@ -5,6 +5,31 @@
 <?php echo $this->section('contenido'); ?>
 
 <h1>Valoración</h1>
+<h2>Datos del docente</h2>
+  
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Dni</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      
+    </tr>
+  </thead>
+  <?php 
+  $x=1;
+  foreach ($datosTabla6 as $dato6): ?>
+  <tbody>
+    <tr>
+      
+      <td><?= $dato6['dni'] ?></td>
+      <td><?= $dato6['nombre'] ?></td>
+      <td><?= $dato6['apellido'] ?></td>
+
+    </tr>
+ </tbody>
+ <?php endforeach; ?>
+</table>
 
  
   <?php if (isset($datosTabla2) && is_array($datosTabla2)): 
