@@ -8,7 +8,18 @@
 <br>   
 <h2 class="text-center">Listado de Valoraciones</h2>
 <br>
-
+<style>
+        /* Estilos para la tabla */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
   
   <table class="table">
   <thead>
@@ -49,6 +60,7 @@
 <br>
 <br>
 <br>
+
 
 
 

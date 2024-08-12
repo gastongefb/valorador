@@ -35,19 +35,20 @@
         <option value="<?=$co['id_condicion']?>"><?=$co['detalle_condicion']?></option>
      <?php endforeach; ?>
      </select> 
+     
 
      <br>
      <label for="vehicle1">DNI</label><br>
-     <input type="text" name="dni" id="dni"><br>
+     <input type="text" name="dni" id="dni" placeholder="Dni"><br>
     <br>
      <label for="vehicle1">JURADO 1</label><br>
-     <input type="text" name="j1" id="j1"><br>
+     <input type="text" name="j1" id="j1" placeholder="Dni"><br>
     <br>
      <label for="vehicle1">JURADO 2</label><br>
-     <input type="text" name="j2" id="j2"><br>
+     <input type="text" name="j2" id="j2" placeholder="Dni"><br>
     <br>
      <label for="vehicle1">JURADO 3</label><br>
-     <input type="text" name="j3" id="j3"><br>
+     <input type="text" name="j3" id="j3" placeholder="Dni"><br>
     
      <br><br>
 

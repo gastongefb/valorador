@@ -18,6 +18,10 @@ use App\Models\DetalleAntDocModel;
 use App\Models\MateriasModel;
 use App\Models\CondicionDocenteModel;
 use App\Models\DocenteModel;
+use App\Models\ValoracionOtrosTitulosModel;
+use App\Models\OtrosAntecedentesDocModel;
+use App\Models\OtrosTitulosModel;  
+use App\Models\DetalleOtrosAntDocModel;           
 
 use CodeIgniter\I18n\Time;
 
@@ -81,7 +85,7 @@ class PersonController extends Controller
         // Recuperar los datos del formulario
         $datos = $this->request->getPost();
 
-        print_r($datos);
+        //print_r($datos);
 
         if (empty($datos)) {
             throw new \Exception("No se recibieron datos del formulario titulo");
@@ -125,7 +129,38 @@ class PersonController extends Controller
         session()->set('datos_paso2', $datosSesion);
 
         //return redirect()->to('paso3');
+        return redirect()->to('paso6');
+    }
+
+    public function paso6()
+    {
+        return view('valoracion/otros_titulos');
+    }
+
+    public function guardarOtrosTitulos()
+    {
+        // Recuperar los datos del formulario
+        $datos = $this->request->getPost();
+
+        print_r($datos);
+
+        if (empty($datos)) {
+            throw new \Exception("No se recibieron datos del formulario postgrado");
+        }
+
+        // Comprobar si existen datos en la sesión
+        $datosSesion = session()->get('datos_paso6') ?? [];
+
+        // Fusionar los datos actuales con los existentes en la sesión
+        $datosSesion = array_merge($datosSesion, $datos);
+
+        // Guardar los datos en la sesión
+        session()->set('datos_paso6', $datosSesion);
+
         return redirect()->to('paso3');
+      
+
+        
     }
     
     public function paso3()
@@ -171,6 +206,29 @@ class PersonController extends Controller
         session()->set('datos_paso4', $datosSesion);
 
         //return redirect()->to('paso5');
+        return redirect()->to('paso7');
+    }
+
+    public function paso7()
+    {
+        return view('valoracion/cargar_otros_ant_docentes');
+    }
+
+    public function guardarOtrosAntDocentes()
+    {
+        // Recuperar los datos del formulario
+        $datos = $this->request->getPost();
+
+        // Comprobar si existen datos en la sesión
+        $datosSesion = session()->get('datos_paso7') ?? [];
+
+        // Fusionar los datos actuales con los existentes en la sesión
+        $datosSesion = array_merge($datosSesion, $datos);
+
+        // Guardar los datos en la sesión
+        session()->set('datos_paso7', $datosSesion);
+
+        //return redirect()->to('paso5');
         return redirect()->to('paso5');
     }
     
@@ -206,16 +264,18 @@ class PersonController extends Controller
         $datosPaso3 = session()->get('datos_paso3');
         $datosPaso4 = session()->get('datos_paso4');
         $datosPaso5 = session()->get('datos_paso5');
+        $datosPaso6 = session()->get('datos_paso6');
+        $datosPaso7 = session()->get('datos_paso7');
       
 
         // Iterar sobre los datos de paso 1
     if ($datosPaso1) {
-        echo "Datos del Paso 1:<br>";
+        //echo "Datos del Paso 1:<br>";
         foreach ($datosPaso1 as $key => $value) {
             //echo "$key: $value<br>";
         }
     } else {
-        echo "No hay datos en el Paso 1.<br>";
+        //echo "No hay datos en el Paso 1.<br>";
     }
 
     $val = new ValidacionModel();
@@ -290,24 +350,64 @@ class PersonController extends Controller
         //echo "No hay datos en el Paso 5.<br>";
     }
 
+    // Iterar sobre los datos de paso 6 y añadir el nuevo campo
+    if (isset($datosPaso6['persons6']) && is_array($datosPaso6['persons6'])) {
+        //echo "Datos del Paso 5:<br>";
+        foreach ($datosPaso6['persons6'] as &$person6) {
+                       
+            // Agregar el campo 'id_valoracion'
+            $person6['id_valoracion'] = $nuevoIdValoracion;
+            //echo "Id Valoración: " . $person4['id_valoracion'] . "<br><br>";
+        }
+        unset($person6); // Romper la referencia
+    } else {
+        //echo "No hay datos en el Paso 5.<br>";
+    }
+
+     // Iterar sobre los datos de paso 7 y añadir el nuevo campo
+     if (isset($datosPaso7['persons7']) && is_array($datosPaso7['persons7'])) {
+        //echo "Datos del Paso 5:<br>";
+        foreach ($datosPaso7['persons7'] as &$person7) {
+                       
+            // Agregar el campo 'id_valoracion'
+            $person7['id_valoracion'] = $nuevoIdValoracion;
+            //echo "Id Valoración: " . $person4['id_valoracion'] . "<br><br>";
+        }
+        unset($person7); // Romper la referencia
+    } else {
+        //echo "No hay datos en el Paso 5.<br>";
+    }
+
         
         $valp = new ValoracionPostgradoModel();
         $cap = new CapacitacionModel();
         $ant_doc = new AntecedentesDocModel();
         $ant_lab = new AntecedentesLabModel();
+        $otros_t = new ValoracionOtrosTitulosModel();
+        $otros_ant_d = new OtrosAntecedentesDocModel();
 
+        //echo"datos paso 6";
+        //print_r($datosPaso6);
           // Preparar los datos para la inserción
         $datosParaInsertar = $datosPaso2['persons'] ?? [];
         $datosParaInsertar3 = $datosPaso3['persons2'] ?? [];
         $datosParaInsertar4 = $datosPaso4['persons3'] ?? [];
         $datosParaInsertar5 = $datosPaso5['persons4'] ?? [];
+        $datosParaInsertar6 = $datosPaso6['persons6'] ?? [];
+        $datosParaInsertar7 = $datosPaso7['persons7'] ?? [];
+        
 
+
+        //print_r($datosParaInsertar);
         
         if (!empty($datosParaInsertar)) {
          foreach ($datosParaInsertar as $dato) {
             $valp->insert($dato);
          }
+            
         }
+        
+        //print_r($datosParaInsertar3);
         if (!empty($datosParaInsertar3)) {
             foreach ($datosParaInsertar3 as $dato3) {
                $cap->insert($dato3);
@@ -324,14 +424,29 @@ class PersonController extends Controller
             foreach ($datosParaInsertar5 as $dato5) {
                 $ant_lab->insert($dato5);
             }
+           }   
+           
+           //echo"datos para insertar";
+           //print_r($datosParaInsertar6);   
+        if (!empty($datosParaInsertar6)) {
+            foreach ($datosParaInsertar6 as $dato6) {
+                $otros_t->insert($dato6);
+            }
            }    
-
+        
+        if (!empty($datosParaInsertar7)) {
+            foreach ($datosParaInsertar7 as $dato7) {
+                $otros_ant_d->insert($dato7);
+            }
+           }    
         // Borrar los datos de la sesión después de guardar en la base de datos
         session()->remove('datos_paso1');
         session()->remove('datos_paso2');
         session()->remove('datos_paso3');
         session()->remove('datos_paso4');
         session()->remove('datos_paso5');
+        session()->remove('datos_paso6');
+        session()->remove('datos_paso7');
 
         //return "Datos guardados correctamente.";
         return  redirect()->to(base_url().'');
@@ -402,6 +517,21 @@ class PersonController extends Controller
                 $puntajes[] = [
                     'detalle' => $t['detalle_valoracion_postgrado'],
                     'puntaje' => $titulo['puntaje']
+                ];
+            }
+        }
+
+        //PUNTAJE DE OTROS TÍTULOS    
+        $val_otros_t = new ValoracionOtrosTitulosModel();
+        $datosTabla8 = $val_otros_t ->getCodigoById_valoracion($id_valoracion);//ACÁ PUEDE TRAER VARIOS
+        $otros_t = new OtrosTitulosModel();
+        // Recorrer el array de códigos y obtener los puntajes del modelo TitulosPostgradoModel
+        foreach ($datosTabla8 as $t) {
+            $otros_titulo = $otros_t->find($t['id_otros_titulos']); // Suponiendo que el método find busca por la clave primaria
+            if ($otros_titulo) {
+                $puntajes8[] = [
+                    'detalle' => $t['detalle_otros_titulos'],
+                    'puntaje' => $otros_titulo['puntaje']
                 ];
             }
         }
@@ -482,8 +612,33 @@ class PersonController extends Controller
                 ];
             }
         }
+
+        //PUNTAJE DE OTROS ANTECEDENTES DOCENTES 
+        $OtrosAntDoc = new OtrosAntecedentesDocModel();
+        $datosTabla9 = $OtrosAntDoc->getDatosById_ant_doc($id_valoracion);//ACÁ PUEDE TRAER VARIOS
+
+        $doant = new DetalleOtrosAntDocModel();
+        
+        //print_r($datosTabla9);
+        //echo $datosTabla9['id_detalle_otro_ant'];
+        foreach ($datosTabla9 as $dcc) {
+            $detalle_doc = $doant->find($dcc['id_detalle_otros_ant']); // Suponiendo que el método find busca por la clave primaria
+           // print_r($detalle_doc['puntaje']);
+            //echo"entro en el para";
+            
+            $tot2 = $detalle_doc['puntaje'];//CALCULA EL PUNTAJE FINAL EN BASE A LA CANTIDAD DE AÑOS
+            if ($detalle_doc) {
+                $puntajes9[] = [
+                    'id_detalle_ant' => $dcc['id_detalle_ant'],
+                    'puntaje' => $tot2,
+                    'detalle' => $dcc['detalle_otros_ant_doc'],
+                ];
+           }
+            
+        }
         
         //PASAMOS LOS DATOS A LA VISTA  
+        
         return view('resultado_busqueda_valoracion', [
                 'datosTabla1' => $puntajes,
                 'datosTabla2' => $titulo,
@@ -492,6 +647,8 @@ class PersonController extends Controller
                 'datosTabla4' => $puntajes4,
                 'datosTabla5' => $puntajes5,
                 'datosTabla6' => $puntajes6,
+                'datosTabla8' => $puntajes8,
+                'datosTabla9' => $puntajes9,
 
             ]);
            

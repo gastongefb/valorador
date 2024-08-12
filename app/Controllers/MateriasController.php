@@ -172,7 +172,7 @@ class MateriasController extends BaseController
             // Registro de depuración para los datos de la carrera
             log_message('debug', 'Datos de la carrera: ' . print_r($carreraData, true));
 
-            // Asegúrate de que traerUnaCarrera devuelve un array asociativo con los datos de la carrera
+            // Asegurarnos de que traerUnaCarrera devuelve un array asociativo con los datos de la carrera
             if ($carreraData && isset($carreraData['nombre_carrera'])) {
                $updatedData['materia']['nombre_carrera'] = $carreraData['nombre_carrera'];
             } 

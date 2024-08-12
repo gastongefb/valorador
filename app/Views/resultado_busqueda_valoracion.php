@@ -6,6 +6,18 @@
 
 <h1>Valoración</h1>
 <h2>Datos del docente</h2>
+<style>
+        /* Estilos para la tabla */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
   
 <table class="table">
   <thead>
@@ -100,6 +112,32 @@
  </tbody>
  <?php endforeach; ?>
 </table>
+
+<h2>Datos de Tabla Otros Título</h2>
+  
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Código</th>
+      <th scope="col">Detalle</th>
+      <th scope="col">Puntaje</th>
+      
+    </tr>
+  </thead>
+  <?php 
+  $x=1;
+  foreach ($datosTabla8 as $dato): ?>
+  <tbody>
+    <tr>
+      <th scope="row"><?php echo"$x";?></th>
+      <td><?= $dato['detalle'] ?></td>
+      <td><?= $dato['puntaje'] ?></td>
+      <?php $punt= $punt + $dato['puntaje'];?>
+      <?php $x=$x + 1;?>
+    </tr>
+ </tbody>
+ <?php endforeach; ?>
+</table>
     
 
     <h2>Datos de Tabla Certificados</h2>
@@ -168,6 +206,33 @@
   <?php 
   $x=1;
   foreach ($datosTabla5 as $dato): ?>
+  <tbody>
+    <tr>
+      <th scope="row"><?php echo"$x";?></th>
+      <td><?= $dato['detalle'] ?></td>
+      <td><?= $dato['puntaje'] ?></td>
+      <?php $punt= $punt + $dato['puntaje'];?>
+      
+      <?php $x=$x + 1;?>
+    </tr>
+ </tbody>
+ <?php endforeach; ?>
+</table>
+
+<h2>Datos de Tabla Otros Antecedentes Docentes</h2>
+   
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Código</th>
+      <th scope="col">Detalle</th>
+      <th scope="col">Puntaje</th>
+      
+    </tr>
+  </thead>
+  <?php 
+  $x=1;
+  foreach ($datosTabla9 as $dato): ?>
   <tbody>
     <tr>
       <th scope="row"><?php echo"$x";?></th>

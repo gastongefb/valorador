@@ -43,11 +43,15 @@ $routes->get('cargar_valoracion', 'PersonController::paso1');
 $routes->post('guardarTitulo', 'PersonController::guardarTitulo');
 $routes->get('paso2', 'PersonController::paso2');
 $routes->post('guardarPostgrado', 'PersonController::guardarPostgrado');
+$routes->get('paso6', 'PersonController::paso6');
+$routes->post('guardarOtrosTitulos', 'PersonController::guardarOtrosTitulos');
 $routes->get('paso3', 'PersonController::paso3');
 $routes->post('guardarCapacitacion', 'PersonController::guardarCapacitacion');
 $routes->get('paso4', 'PersonController::paso4');
 $routes->post('guardarAntDocentes', 'PersonController::guardarAntDocentes');
 $routes->get('paso5', 'PersonController::paso5');
+$routes->get('paso7', 'PersonController::paso7');
+$routes->post('guardarOtrosAntDocentes', 'PersonController::guardarOtrosAntDocentes');
 $routes->post('guardarAntLab', 'PersonController::guardarAntLab');
 $routes->get('confirmacion', 'PersonController::confirmar');
 
@@ -92,6 +96,7 @@ $routes->put('/Docente/:id', 'DocenteController::update');
 $routes->delete('/Docente/(:num)', 'DocenteController::destroy/$1',[ 'as' => 'Docente.destroy' ]); */
 
 
+$routes->get('generate-pdf', 'PdfController::generatePdf');
 
 
 
