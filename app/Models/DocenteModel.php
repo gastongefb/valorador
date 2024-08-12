@@ -10,11 +10,13 @@ class DocenteModel extends Model
    // protected $allowedFields = ['name', 'surname', 'dni', 'email', 'state', 'username', 'password'];
     protected $allowedFields = ['nombre', 'apellido', 'dni', 'mail', 'estado', 'usuario', 'clave'];
    
+    protected $primaryKey = 'id';
+
     protected $validationRules = [
-        'nombre' => 'required|alpha_space|min_length[3]|max_length[200]',
-        'apellido' => 'required|alpha_space|min_length[3]|max_length[200]',
+       // 'nombre' => 'required|alpha_space|min_length[3]|max_length[200]',
+       // 'apellido' => 'required|alpha_space|min_length[3]|max_length[200]',
       //  'dni' => 'required|exact_length[8]|is_unique[docente.dni,id,{id}]',
-        'dni' => 'required|is_unique[docente.dni,id,{id}]',
+       // 'dni' => 'required|is_unique[docente.dni,id,{id}]',
       //  'mail' => 'required|max_length[254]|valid_email|is_unique[docente.mail,id,{id}]',
       //  'estado' => 'required|in_list[active,inactive]',
       //  'usuario' => 'required|alpha_numeric_space|min_length[3]|max_length[50]|is_unique[docente.usuario,id,{id}]',
@@ -52,6 +54,17 @@ class DocenteModel extends Model
         return $this->save($data);
     }
 
+    public function updateDocente($id,$data)
+    {
+       // $data = $this->hashPassword($data);
+       //var_dump($data);
+      // var_dump($id);
+       // exit();
+        //unset($data['id']);
+        return $this->update($id,$data);
+       
+    }
+
     protected function hashPassword(array $data)
     {
         if (! isset($data['clave'])) {
@@ -65,6 +78,8 @@ class DocenteModel extends Model
     }
     public function deleteDocente($id_docente)
     {
+       //  var_dump($id_docente);
+        //exit();
         return $this->delete($id_docente);
     }
 

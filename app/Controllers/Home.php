@@ -19,7 +19,17 @@ class Home extends BaseController
         $usuario = $this->request->getPost("usuario");
         $contrasena = $this ->request->getPost("contrasena");
         $Usuario= new Usuarios();
-        
+        /* cuando no existe la tabla usuario 
+        $data = [
+            'usuario'=>'carlos',
+          //  'type'  => $datosUsuario[0]["type"]
+            ];
+            $session = session() ;
+            $session->set($data);
+
+return redirect()->to(base_url('/inicio'))->with('mensaje1','1');
+
+        */
         $datosUsuario = $Usuario->obtenerUsuario(['nombre_usuario' =>$usuario]);
         if(count( $datosUsuario) > 0 && $contrasena == $datosUsuario[0]['contrasena'])
             //password_verify($contrasena, $datosUsuario[0]['contrasena']))
@@ -37,8 +47,9 @@ class Home extends BaseController
         }else {
              return redirect()->to(base_url('/'))->with('mensaje','0');
         
-        }     
+        }    
     }
+        
     //para salir de la sesion
     public function salir(){
         $session = session();
