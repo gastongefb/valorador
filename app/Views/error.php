@@ -1,14 +1,26 @@
+<?php echo $this->extend('layaout'); ?>
 
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Error</title>
-</head>
+<?php echo $this->section('contenido'); ?>
+
+<style>
+p {
+  text-align: center;
+}
+body {
+  text-align: center;
+}
+</style>
+
 <body>
+<br>
+<br>
     <h1>Error</h1>
     <p><?= $mensaje ?></p>
-    <a href="/busqueda">Volver a buscar</a>
-</body>
-</html>
+    <a href="http://localhost/valoradorG2/valorador/public/buscar_valoracion_por_docente">Volver a buscar</a>
+<br>
+<br>
+<br>
+<br>
+
+<?php echo $this->endSection() ;?>
