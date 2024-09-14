@@ -25,7 +25,7 @@
 
    <label fro="cuatrimestre" class="col-sm-2 form-label">Cuatrimestre</label>
    <input type="text" class="form-control" name="cuatrimestre" autofocus>
-
+   <br>
    <select name="id_carrera" class="form-control" autofocus>
      <option disabled selected>Elija una Carrera</option>
      <?php foreach($carreras as $c): ?>

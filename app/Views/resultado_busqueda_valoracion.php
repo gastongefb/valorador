@@ -4,6 +4,15 @@
 
 <?php echo $this->section('contenido'); ?>
 
+<style>
+p {
+  text-align: right;
+}
+body {
+  text-align: center;
+}
+</style>
+
 <h1>Valoración</h1>
 <h2>Datos del docente</h2>
 <style>
@@ -11,6 +20,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
+            
         }
         th, td {
             border: 1px solid black;
@@ -42,6 +52,7 @@
  </tbody>
  <?php endforeach; ?>
 </table>
+<br>
 
  
   <?php if (isset($datosTabla2) && is_array($datosTabla2)): 
@@ -63,7 +74,7 @@
           //echo "el puntaje es:", $puntaje;
           //echo "el detalle es:", $detalle;
         ?>
-  <h2>Datos de Tabla Puntaje Título de base</h2>
+  <h4>Puntaje Título de base</h4>
   <?php $punt=0;?>
   <table class="table">
   <thead>
@@ -85,9 +96,10 @@
     </tr>
  </tbody>
  
-</table>      
+</table>    
+<br>  
     
-  <h2>Datos de Tabla Título Postgrado</h2>
+  <h4>Título de Postgrado</h4>
   
   <table class="table">
   <thead>
@@ -112,8 +124,9 @@
  </tbody>
  <?php endforeach; ?>
 </table>
+<br>
 
-<h2>Datos de Tabla Otros Título</h2>
+<h4>Otros Título</h4>
   
   <table class="table">
   <thead>
@@ -138,9 +151,10 @@
  </tbody>
  <?php endforeach; ?>
 </table>
+<br>
     
 
-    <h2>Datos de Tabla Certificados</h2>
+<h4>Capacitación</h4>
     <table class="table">
   <thead>
     <tr>
@@ -165,8 +179,9 @@
  </tbody>
  <?php endforeach; ?>
 </table>
+<br>
 
-    <h2>Datos de Tabla Antecedentes laborales (Privado - Estatal)</h2>
+<h4>Antecedentes laborales (Privado - Estatal)</h4>
     <table class="table">
   <thead>
     <tr>
@@ -191,8 +206,9 @@
  </tbody>
  <?php endforeach; ?>
 </table>
+<br>
 
-    <h2>Datos de Tabla Antecedentes Docentes</h2>
+<h4>Antecedentes Docentes</h4>
    
   <table class="table">
   <thead>
@@ -218,8 +234,9 @@
  </tbody>
  <?php endforeach; ?>
 </table>
+<br>
 
-<h2>Datos de Tabla Otros Antecedentes Docentes</h2>
+<h4>Otros Antecedentes Docentes</h4>
    
   <table class="table">
   <thead>
@@ -244,11 +261,19 @@
     </tr>
  </tbody>
  <?php endforeach; ?>
+ 
 </table>
+<br>
     
+
+
+<p>
+<br>
+<br>
 <?php 
  echo "TOTAL VALORACIÓN: ", $punt;
  ?>
+ </p>
  <br>
  <br>
  <br>

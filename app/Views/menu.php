@@ -37,7 +37,8 @@
               Valoraciones
             </a>
             <ul class="dropdown-menu">
-             <li><a class="dropdown-item" href="<?php echo base_url('/cargar_valoracion') ?>"> Cargar Valoración</a></li>
+             <li><a class="dropdown-item" href="<?php echo base_url('/cargar_valoracion') ?>"> Cargar Nueva Valoración</a></li>
+             <li><a class="dropdown-item" href="<?php echo base_url('/#') ?>"> Actualizar Valoración</a></li>
               <li><a class="dropdown-item" href="<?php echo base_url('/buscar_valoracion_por_docente') ?>">Buscar Valoración por docente</a></li>
               <li><a class="dropdown-item" href="<?php echo base_url('/Mostrar_Valoraciones_Por_Materia') ?>">Mostrar Valoración por Materia</a></li>
               <li><a class="dropdown-item" href="<?php echo base_url('/mostrar_valoraciones') ?>">Mostrar Todas las Valoraciones</a></li>

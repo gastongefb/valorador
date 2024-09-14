@@ -461,8 +461,12 @@ class PersonController extends Controller
 
     public function buscar_valoracion_por_docente2()
     {
+        
+
         // Obtén el DNI del input (por ejemplo, de un formulario)
         $dni = $this->request->getPost('dni');
+
+        
 
         $val = new ValidacionModel();
         $resultado = $val->getCodigoByDni($dni);
@@ -474,12 +478,12 @@ class PersonController extends Controller
 
         //print_r($d);
 
-        if (!empty($resultado)) {
+        
+
+        if (!empty($resultado) and !empty($d)) {
             $id_valoracion = $resultado[0]['id_valoracion'];
             
-        } else {
-            // Manejo de error: no se encontró id_valoracion para el DNI dado
-        }
+        
 
         if (!empty($resul)) {
             $cod_titulo = $resul[0]['id_titulo'];
@@ -496,13 +500,21 @@ class PersonController extends Controller
             // Manejo de error: no se encontró id_valoracion para el DNI dado
         }
         
+
         $puntajes6[] = [
             'dni' => $dni,
             'nombre' => $nombre,
             'apellido' => $apellido,
            
         ];
-       
+
+        } else {
+                 return view('error', ['mensaje' => 'DNI no encontrado']);
+        }
+        
+        //else {
+          //  return view('error', ['mensaje' => 'DNI no encontrado']);
+        //}
               
         if ($id_valoracion) {
 
