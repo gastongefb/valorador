@@ -3,7 +3,19 @@
 
 <?php echo $this->section('contenido'); ?>
 
-
+<style>
+        /* Estilos para la tabla */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+  
 
 
 <div class="container-fluid">

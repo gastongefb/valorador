@@ -12,7 +12,7 @@
      <div class="row">
         <div class="col-sm-4"></div>
         <div class="col-sm-4">
-        <h1>Inicio de sesion sistema Valorador</h1>
+        <h1>Inicio de sesión Sistema Valorador</h1>
             <form action="<?php echo base_url('/login')?>" method="POST">
                 <label for="usuario">Usuario</label>
                 <input type="text" name="usuario" class= "form-control"  require="">

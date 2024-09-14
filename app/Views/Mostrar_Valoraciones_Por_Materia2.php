@@ -26,7 +26,7 @@
      <br><br>
 
    
-<button type="submit" class="btn btn-secondary">Siguiente</button>
+<button type="submit" class="btn btn-secondary">Buscar</button>
 <br>
 </form>
 

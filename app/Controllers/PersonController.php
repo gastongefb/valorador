@@ -925,6 +925,25 @@ class PersonController extends Controller
                $tot2 = $dc['fecha'] * $detalle_do['puntaje'];//CALCULA EL PUNTAJE FINAL EN BASE A LA CANTIDAD DE AÑOS
                $suma = $suma + $tot2;
             }
+
+            $otros_ant = new OtrosAntecedentesDocModel();
+            $datosTabla8 = $otros_ant->getDatosById_ant_doc($id_va);//ACÁ PUEDE TRAER VARIOS
+            $otros_do = new DetalleOtrosAntDocModel();
+            foreach ($datosTabla8 as $dcc) {
+               $detalle_doc = $otros_do->find($dcc['id_detalle_otros_ant']); // Suponiendo que el método find busca por la clave primaria
+               $tot2 = $detalle_doc['puntaje'];//CALCULA EL PUNTAJE FINAL EN BASE A LA CANTIDAD DE AÑOS
+               $suma = $suma + $tot2;
+            }
+    
+            $val_otros_t = new ValoracionOtrosTitulosModel();
+            $datosTabla9 = $val_otros_t ->getCodigoById_valoracion($id_va);//ACÁ PUEDE TRAER VARIOS
+            $otros_t = new OtrosTitulosModel();
+            // Recorrer el array de códigos y obtener los puntajes del modelo TitulosPostgradoModel
+            foreach ($datosTabla9 as $t) {
+                $otros_titulo = $otros_t->find($t['id_otros_titulos']); // Suponiendo que el método find busca por la clave primaria
+                $tot3 = $otros_titulo['puntaje'];
+                $suma = $suma + $tot3;
+            }
         
             //PUNTAJE DEL TÍTULO DE BASE
             
@@ -970,6 +989,9 @@ class PersonController extends Controller
      */  
 
     }
+
+
+    
 
     
 
