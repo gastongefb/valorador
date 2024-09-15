@@ -92,9 +92,18 @@ class PlanesController extends BaseController
             $sql->where('id_carrera_materia', $var);
             $query = $sql->get();
             $resultado = $query->getResultArray();
+
+            $sql = $db->table('carreras c');
+            $sql->select('c.*');
+            $sql->where('id_carrera',$var);
+            $query = $sql->get();
+            $resul = $query->getResultArray();
+
+
           
             $data = ['titulo'=> 'Listado de Validaciones', 'validaciones'=>$resultado];
-            return view('mostrarPlanes/mostrarPlanes4', $data);
+            $data2 = ['titulo'=> 'Listado de Validaciones', 'validaciones2'=>$resul];
+            return view('mostrarPlanes/mostrarPlanes4', $data + $data2);
             
         }
 

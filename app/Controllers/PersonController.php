@@ -719,6 +719,8 @@ class PersonController extends Controller
     // Obtener todos los registros de la tabla 'valoracion'
     $registros = $validacionModel->getValidacionesPorMateria($datos);
 
+    if ((!empty($registros)) and (!empty($datos))){
+
     $fechaActual = Time::now(); //TRAE FECHA ACTUAL
 
     foreach ($registros as $registro) {
@@ -836,7 +838,11 @@ class PersonController extends Controller
     } 
     //PASAMOS LOS DATOS A LA VISTA  
     return view('mostrarValoraciones', ['datosTabla1' => $titulo,]);
-
+     
+    }
+    else {
+        return view('error2', ['mensaje' => 'Esta materia no posee valoración']);
+    }
         
     } 
 

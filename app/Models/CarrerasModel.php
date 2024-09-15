@@ -27,5 +27,14 @@ class CarrerasModel extends Model
     {
         return $this->where('id_carrera', $id)->first();
     }
+    public function getNombreCarrera($c)
+    {
+        $builder = $this->db->table($this->table);
+        $builder->select('nombre_carrera');
+        $builder->where('id_carrera',$d);
+        $query = $builder->get();
+ 
+        return $query->getResultArray(); // Devuelve los resultados como un array asociativo
+    }
 
 }

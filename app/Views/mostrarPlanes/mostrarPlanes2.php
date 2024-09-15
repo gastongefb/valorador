@@ -5,7 +5,7 @@
 
 
 <div class="container-fluid">
-    <h3>Sleccione un Plan de Estudio</h3>
+    <h3>Seleccione un Plan de Estudio</h3>
 
    <form action="<?php echo base_url('mostrarPlanes3') ?>" method="post" autocomplete="off">
 

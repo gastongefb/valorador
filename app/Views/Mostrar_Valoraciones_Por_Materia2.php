@@ -20,10 +20,7 @@
      <?php endforeach; ?>
      </select> 
     <br>
-
-
     
-     <br><br>
 
    
 <button type="submit" class="btn btn-secondary">Buscar</button>

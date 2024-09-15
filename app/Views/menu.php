@@ -25,7 +25,6 @@
               Materias
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="<?php echo base_url('/mostrar_materias') ?> ">Mostrar Materias</a></li>
               <li><a class="dropdown-item" href="<?php echo base_url('/insertar_materia1') ?>">Cargar Materias</a></li>
               <li><a class="dropdown-item" href="<?php echo base_url('/materias') ?>">Actualizar Materias</a></li>
 

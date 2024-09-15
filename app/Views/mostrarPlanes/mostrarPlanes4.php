@@ -17,7 +17,25 @@
     </style>
   
 
+<br>
+<br>
+<?php
+ foreach($validaciones2 as $v):   
+  ?>
+<tbody>
+ <tr>
+    <th scope="row" ><?php echo $v['nombre_carrera'];?></th>
+    
+  </tr>
+ 
+</tbody>
 
+ <?php
+  endforeach;
+?>
+
+<br>
+<br>
 <div class="container-fluid">
 <table class="table table-hover">
   <thead>
@@ -32,10 +50,9 @@
   </thead>
 
   <?php
-    foreach($validaciones as $validacion):
+ 
 
-        //echo $titulo;
-        
+foreach($validaciones as $validacion):   
     ?>
   <tbody>
    <tr>
@@ -54,5 +71,7 @@
 </table>
     </div>
 
+  <br>
+  <br>
 
 <?php echo $this->endSection() ;?>
