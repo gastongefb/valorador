@@ -53,6 +53,9 @@
       <td><?= $registro['materia'];?></td>
       <td><?= $registro['condicion'];?></td>
       <td><?= $registro['puntaje'];?></td>
+      <?php echo"$x";
+      $x=$x + 1;
+      ?>
     </tr>
  </tbody>
  <?php endforeach; ?>

@@ -9,7 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-    <h1>Nueva Valoración</h1>
+    <h3>Seleccionar materia</h3>
   
 <form action="<?php echo base_url('Mostrar_Valoraciones_Por_Materia3') ?>" method="post" autocomplete="off">
 

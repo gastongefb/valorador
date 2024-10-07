@@ -12,7 +12,7 @@ class ValidacionModel extends Model
 
     protected $useAutoIncrement = true;
 
-    protected $allowedFields = ['dni', 'id_titulo','j1','j2','j3','id_materia_valoracion','id_condicion'];
+    protected $allowedFields = ['dni', 'id_titulo','j1','j2','j3','id_materia_valoracion'];
 
     protected $table = 'valoracion';
 

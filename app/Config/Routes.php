@@ -97,12 +97,14 @@ $routes->put('/Docente/:id', 'DocenteController::update');
 $routes->delete('/Docente/(:num)', 'DocenteController::destroy/$1',[ 'as' => 'Docente.destroy' ]); */
 
 
-$routes->get('generate-pdf', 'PdfController::generatePdf');
+// Rutas personalizadas
+$routes->get('cargar_datos', 'NuevoController::cargar_datos');
 
+// Rutas para guardar cada sección
+$routes->post('guardar-titulo', 'NuevoController::guardarTitulo');
+$routes->post('guardar-postgrado', 'NuevoController::guardarPostgrado');
+$routes->post('guardar-otros-titulos', 'NuevoController::guardarOtrosTitulos');
+$routes->post('guardar-capacitacion', 'NuevoController::guardarCapacitacion');
 
-
-
-
-
-
-
+// Ruta para guardar los datos finales en la base de datos
+$routes->get('guardar-datos-finales', 'NuevoController::guardarDatosFinales');

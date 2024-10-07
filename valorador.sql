@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2024 at 10:01 PM
+-- Generation Time: Oct 07, 2024 at 01:51 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -80,7 +80,12 @@ INSERT INTO `antecedentes_docentes` (`id_ant_doc`, `id_valoracion`, `detalle_ant
 (58, 205, '', 0, 1),
 (59, 206, '', 0, 1),
 (60, 207, '', 0, 1),
-(61, 208, 'ccc', 2, 1);
+(61, 208, 'ccc', 2, 1),
+(62, 209, 'sds', 2, 2),
+(63, 210, 'fdfd', 2, 1),
+(64, 211, 'ddfd', 2, 1),
+(65, 212, 'wewe', 2, 1),
+(66, 213, 'erere', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -141,7 +146,12 @@ INSERT INTO `antecedentes_laborales` (`id_ant_lab`, `id_valoracion`, `detalle_an
 (58, 205, '', 0, 1),
 (59, 206, '', 0, 1),
 (60, 207, '', 0, 1),
-(61, 208, '', 0, 1);
+(61, 208, '', 0, 1),
+(62, 209, 'edeed', 2, 2),
+(63, 210, 'dfdfd', 2, 1),
+(64, 211, 'dfdfd', 2, 1),
+(65, 212, 'ddf', 2, 1),
+(66, 213, 'erer', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -168,42 +178,11 @@ INSERT INTO `capacitacion` (`id_capacitacion`, `id_valoracion`, `detalle_capacit
 (49, 159, 'eeere', '2020-01-02', 1),
 (50, 159, 'wewew', '2019-02-02', 3),
 (51, 160, 'erer', '2020-01-01', 1),
-(52, 161, '', '0000-00-00', 1),
-(53, 162, '', '0000-00-00', 1),
-(54, 163, '', '0000-00-00', 1),
-(55, 164, '', '0000-00-00', 1),
-(56, 165, 'ewew', '2021-01-02', 2),
-(57, 166, '', '0000-00-00', 1),
-(58, 167, '', '0000-00-00', 1),
-(59, 168, '', '0000-00-00', 1),
-(60, 169, '', '0000-00-00', 1),
-(61, 170, '', '0000-00-00', 1),
-(62, 171, '', '0000-00-00', 1),
-(63, 172, '', '0000-00-00', 1),
-(64, 173, '', '0000-00-00', 1),
-(65, 175, '', '0000-00-00', 1),
-(66, 176, '', '0000-00-00', 1),
-(67, 177, '', '0000-00-00', 1),
-(68, 178, 'fgfgfgf', '2020-04-04', 2),
 (69, 178, '', '0000-00-00', 1),
 (70, 180, 'dfdd', '2021-01-01', 2),
-(71, 181, '', '0000-00-00', 1),
-(72, 184, '', '0000-00-00', 1),
-(73, 185, '', '0000-00-00', 1),
-(74, 186, '', '0000-00-00', 1),
-(75, 187, '', '0000-00-00', 1),
-(76, 188, '', '0000-00-00', 1),
-(77, 189, '', '0000-00-00', 1),
-(78, 190, '', '0000-00-00', 1),
-(79, 191, '', '0000-00-00', 1),
-(80, 192, '', '0000-00-00', 1),
-(81, 202, '', '0000-00-00', 1),
-(82, 203, '', '0000-00-00', 1),
-(83, 204, '', '0000-00-00', 1),
-(84, 205, '', '0000-00-00', 1),
-(85, 206, '', '0000-00-00', 1),
-(86, 207, '', '0000-00-00', 1),
-(87, 208, 'ddd', '2024-08-14', 1);
+(94, 229, 'con eval,d dias y no horas', '2024-10-03', 3),
+(95, 230, '', '0000-00-00', 1),
+(96, 231, '', '0000-00-00', 1);
 
 -- --------------------------------------------------------
 
@@ -222,7 +201,7 @@ CREATE TABLE `carreras` (
 
 INSERT INTO `carreras` (`id_carrera`, `nombre_carrera`) VALUES
 (1, 'Tecnicatura Superior en Desarrollo de Software'),
-(2, 'Energías Rebovables');
+(2, 'Energías Renovables');
 
 -- --------------------------------------------------------
 
@@ -311,6 +290,70 @@ INSERT INTO `detalle_capacitacion` (`id_detalle_capacitacion`, `detalle`, `punta
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `detalle_formacion_ofrecida`
+--
+
+CREATE TABLE `detalle_formacion_ofrecida` (
+  `id_formacion_ofrecida` int(11) NOT NULL,
+  `detalle` varchar(100) NOT NULL,
+  `puntaje` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `detalle_formacion_ofrecida`
+--
+
+INSERT INTO `detalle_formacion_ofrecida` (`id_formacion_ofrecida`, `detalle`, `puntaje`) VALUES
+(1, 'Cursos,seminarios,foros,etc.Con normativa de aval de organismo oficial. Más de 81 hs.', 0.25),
+(2, 'Cursos,seminarios,foros,etc.Con normativa de aval de organismo oficial. Entre 41 y 80 hs.', 0.2),
+(3, 'Cursos,seminarios,foros,etc.Con normativa de aval de organismo oficial. Entre 21 y 40 hs.', 0.15),
+(4, 'Cursos,seminarios,foros,etc.Con normativa de aval de organismo oficial. Hasta 20 hs.', 0.1),
+(5, 'Cursos,seminarios,foros,etc.Sin normativa de aval de organismo oficial. Por certificación.', 0.05),
+(6, 'Congresos y Simposios.Eventos internacionales.Coordinador/moderador.', 0.25),
+(7, 'Congresos y Simposios.Eventos internacionales.Expositor/Distante.', 0.3),
+(9, 'Congresos y Simposios.Eventos nacionales.Coordinaodr/Moderador.', 0.2),
+(10, 'Congresos y Simposios.Eventos nacionales.Expositor/Disertante.', 0.25),
+(11, 'Congresos y Simposios.Eventos provinciales.Coordinador/moderador.', 0.1),
+(12, 'Congresos y Simposios.Eventos provinciales.Expositor/Disertante.', 0.15),
+(13, 'Congresos y Simposios.Eventos departamentales.Coordinador/moderador.', 0.05),
+(14, 'Congresos y Simposios.Eventos departamentales.Expositor/Disertante.', 0.03),
+(15, 'Congresos y Simposios.Eventos departamentales.Coordinador/moderador.', 0.05),
+(16, 'Congresos y Simposios.Eventos departamentales.Expositor/Disertante.', 0.1),
+(17, 'Congresos y Simposios.Eventos institucionales.Coordinador/moderador.', 0.03),
+(18, 'Congresos y Simposios.Eventos institucionales.Expositor/Disertante.', 0.05);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `detalle_investigacion`
+--
+
+CREATE TABLE `detalle_investigacion` (
+  `id_detalle_investigacion` int(11) NOT NULL,
+  `detalle` varchar(100) NOT NULL,
+  `puntaje` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `detalle_investigacion`
+--
+
+INSERT INTO `detalle_investigacion` (`id_detalle_investigacion`, `detalle`, `puntaje`) VALUES
+(1, 'Proyecto de investigación relacionado con el espacio curricular y/o la carrera.', 1),
+(2, 'Publicaciones científicas y/o académcias.Libro.Autor', 0.5),
+(3, 'Publicaciones científicas y/o académcias.Libro.Co-Autor', 0.25),
+(4, 'Publicaciones científicas y/o académcias.Libro.Compilador', 0.1),
+(5, 'Publicaciones científicas y/o académcias.Capítulo.Autor.', 0.25),
+(6, 'Publicaciones científicas y/o académcias.Capítulo.Co-Autor.', 0.15),
+(7, 'Publicaciones científicas y/o académcias.Capítulo.Compilador.', 0.1),
+(8, 'Publicaciones científicas y/o académcias.Artículo.Autor.', 0.15),
+(9, 'Publicaciones científicas y/o académcias.Artículo.Co-Autor.', 0.1),
+(10, 'Publicaciones científicas y/o académcias.Artículo.Compilador.', 0.05),
+(11, 'Otras publicaciones relativas a la especificidad de la carrera.', 0.2);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `detalle_otros_ant_doc`
 --
 
@@ -352,6 +395,62 @@ CREATE TABLE `docente` (
 --
 
 INSERT INTO `docente` (`id`, `nombre`, `apellido`, `dni`, `mail`, `estado`, `usuario`, `clave`) VALUES
+(1, ' MARCELO HUMBERTO', 'ABALLAY SORIA', '25714353', '', 0, '', ''),
+(2, ' ALICIA NOEMI', 'CELAYES FLORES', '30157746', '', 0, '', ''),
+(3, ' MARIA CELINA', 'COTO HIDALGO', '37741589', '', 0, '', ''),
+(4, ' ANALIA DEL PILAR', 'DELGADO', '20805413', '', 0, '', ''),
+(5, ' SERGIO GASTON', 'GARBEROGLIO ELIZONDO', '27269774', '', 0, '', ''),
+(6, ' ANALIA VERONICA', 'HEREDIA', '23922369', '', 0, '', ''),
+(7, ' JUAN DE DIOS', 'LOPEZ', '30725012', '', 0, '', ''),
+(9, ' RAQUEL EUGENIA', 'MICHALEK FORQUERA', '28262995', '', 0, '', ''),
+(10, ' VERÓNICA NOELIA', 'MOLINA ATENCIO', '32007429', '', 0, '', ''),
+(11, ' JOSE RUBEN', 'MOLL', '29588455', '', 0, '', ''),
+(12, ' LAURA EMILIA', 'ROMERO', '31642634', '', 0, '', ''),
+(13, ' VIVIANA EDITH', 'SANCHEZ', '29177212', '', 0, '', ''),
+(14, ' MARIA CECILIA DEL ROSARIO', 'SILVA IBAÑEZ', '35188938', '', 0, '', ''),
+(1, ' MARCELO HUMBERTO', 'ABALLAY SORIA', '25714353', '', 0, '', ''),
+(2, ' ALICIA NOEMI', 'CELAYES FLORES', '30157746', '', 0, '', ''),
+(3, ' MARIA CELINA', 'COTO HIDALGO', '37741589', '', 0, '', ''),
+(4, ' ANALIA DEL PILAR', 'DELGADO', '20805413', '', 0, '', ''),
+(5, ' SERGIO GASTON', 'GARBEROGLIO ELIZONDO', '27269774', '', 0, '', ''),
+(6, ' ANALIA VERONICA', 'HEREDIA', '23922369', '', 0, '', ''),
+(7, ' JUAN DE DIOS', 'LOPEZ', '30725012', '', 0, '', ''),
+(9, ' RAQUEL EUGENIA', 'MICHALEK FORQUERA', '28262995', '', 0, '', ''),
+(10, ' VERÓNICA NOELIA', 'MOLINA ATENCIO', '32007429', '', 0, '', ''),
+(11, ' JOSE RUBEN', 'MOLL', '29588455', '', 0, '', ''),
+(12, ' LAURA EMILIA', 'ROMERO', '31642634', '', 0, '', ''),
+(13, ' VIVIANA EDITH', 'SANCHEZ', '29177212', '', 0, '', ''),
+(14, ' MARIA CECILIA DEL ROSARIO', 'SILVA IBAÑEZ', '35188938', '', 0, '', ''),
+(1, ' MARCELO HUMBERTO', 'ABALLAY SORIA', '25714353', '', 0, '', ''),
+(2, ' ALICIA NOEMI', 'CELAYES FLORES', '30157746', '', 0, '', ''),
+(3, ' MARIA CELINA', 'COTO HIDALGO', '37741589', '', 0, '', ''),
+(4, ' ANALIA DEL PILAR', 'DELGADO', '20805413', '', 0, '', ''),
+(5, ' SERGIO GASTON', 'GARBEROGLIO ELIZONDO', '27269774', '', 0, '', ''),
+(6, ' ANALIA VERONICA', 'HEREDIA', '23922369', '', 0, '', ''),
+(7, ' JUAN DE DIOS', 'LOPEZ', '30725012', '', 0, '', ''),
+(8, ' EDUARDO MARCELO', 'MAURIN', '20130177', '', 0, '', ''),
+(9, ' RAQUEL EUGENIA', 'MICHALEK FORQUERA', '28262995', '', 0, '', ''),
+(10, ' VERÓNICA NOELIA', 'MOLINA ATENCIO', '32007429', '', 0, '', ''),
+(11, ' JOSE RUBEN', 'MOLL', '29588455', '', 0, '', ''),
+(12, ' LAURA EMILIA', 'ROMERO', '31642634', '', 0, '', ''),
+(13, ' VIVIANA EDITH', 'SANCHEZ', '29177212', '', 0, '', ''),
+(14, ' MARIA CECILIA DEL ROSARIO', 'SILVA IBAÑEZ', '35188938', '', 0, '', ''),
+(15, ' LUIS FERNANDO NICOLAS', 'ZALAZAR GARCIA', '28773900', '', 0, '', ''),
+(1, ' MARCELO HUMBERTO', 'ABALLAY SORIA', '25714353', '', 0, '', ''),
+(2, ' ALICIA NOEMI', 'CELAYES FLORES', '30157746', '', 0, '', ''),
+(3, ' MARIA CELINA', 'COTO HIDALGO', '37741589', '', 0, '', ''),
+(4, ' ANALIA DEL PILAR', 'DELGADO', '20805413', '', 0, '', ''),
+(5, ' SERGIO GASTON', 'GARBEROGLIO ELIZONDO', '27269774', '', 0, '', ''),
+(6, ' ANALIA VERONICA', 'HEREDIA', '23922369', '', 0, '', ''),
+(7, ' JUAN DE DIOS', 'LOPEZ', '30725012', '', 0, '', ''),
+(8, ' EDUARDO MARCELO', 'MAURIN', '20130177', '', 0, '', ''),
+(9, ' RAQUEL EUGENIA', 'MICHALEK FORQUERA', '28262995', '', 0, '', ''),
+(10, ' VERÓNICA NOELIA', 'MOLINA ATENCIO', '32007429', '', 0, '', ''),
+(11, ' JOSE RUBEN', 'MOLL', '29588455', '', 0, '', ''),
+(12, ' LAURA EMILIA', 'ROMERO', '31642634', '', 0, '', ''),
+(13, ' VIVIANA EDITH', 'SANCHEZ', '29177212', '', 0, '', ''),
+(14, ' MARIA CECILIA DEL ROSARIO', 'SILVA IBAÑEZ', '35188938', '', 0, '', ''),
+(15, ' LUIS FERNANDO NICOLAS', 'ZALAZAR GARCIA', '28773900', '', 0, '', ''),
 (1, ' MARCELO HUMBERTO', 'ABALLAY SORIA', '25714353', '', 0, '', ''),
 (2, ' ALICIA NOEMI', 'CELAYES FLORES', '30157746', '', 0, '', ''),
 (3, ' MARIA CELINA', 'COTO HIDALGO', '37741589', '', 0, '', ''),
@@ -415,6 +514,34 @@ INSERT INTO `dynamic_inputs_table` (`id`, `input_value`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `formacion_ofrecida`
+--
+
+CREATE TABLE `formacion_ofrecida` (
+  `id_formacion` int(11) NOT NULL,
+  `id_valoracion` int(11) NOT NULL,
+  `detalle_formacion` varchar(100) NOT NULL,
+  `fecha` date NOT NULL,
+  `id_formacion_ofrecida` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `investigacion`
+--
+
+CREATE TABLE `investigacion` (
+  `id_investigacion` int(11) NOT NULL,
+  `id_valoracion` int(11) NOT NULL,
+  `detalle_investigacion` varchar(100) NOT NULL,
+  `fecha` date NOT NULL,
+  `id_detalle_investigacion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `materias`
 --
 
@@ -431,13 +558,13 @@ CREATE TABLE `materias` (
 
 INSERT INTO `materias` (`id_materia`, `nombre_materia`, `cuatrimestre`, `id_carrera_materia`) VALUES
 (1, 'Programacion I', 1, 1),
-(2, 'Sistemas de Informac', 1, 1),
+(2, 'Sistemas de Información I', 1, 1),
 (20, 'Programacion I', 1, 2),
 (32, 'Energías Renovables', 1, 2),
 (33, 'Energía Fotovoltáica', 2, 2),
 (34, 'desarrollo de software I', 1, 1),
-(35, 'ambiente empresarial', 0, 1),
-(36, 'ingles', 0, 1);
+(35, 'ambiente empresarial', 2, 1),
+(36, 'inglés', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -469,8 +596,12 @@ INSERT INTO `otros_antecedentes_docentes` (`id_detalle_ant`, `id_valoracion`, `d
 (9, 206, '', '0000-00-00', 1),
 (10, 207, 'qqqq', '2024-08-12', 1),
 (11, 207, 'dddd', '2024-08-06', 4),
-(12, 208, 'aaaaaaa', '2024-08-12', 1),
-(13, 208, 'eeeee', '2024-08-13', 4);
+(17, 227, 'public', '2024-10-01', 2),
+(18, 228, '', '0000-00-00', 1),
+(19, 228, '', '0000-00-00', 1),
+(20, 229, 'public', '2024-10-01', 2),
+(21, 230, 'public', '2024-10-01', 2),
+(22, 231, 'public', '2024-10-01', 2);
 
 -- --------------------------------------------------------
 
@@ -480,7 +611,7 @@ INSERT INTO `otros_antecedentes_docentes` (`id_detalle_ant`, `id_valoracion`, `d
 
 CREATE TABLE `otros_titulos` (
   `id_otros_titulos` int(11) NOT NULL,
-  `detalle_otros_titulos` varchar(100) NOT NULL,
+  `detalle_otros_titulos` varchar(200) NOT NULL,
   `puntaje` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -489,10 +620,11 @@ CREATE TABLE `otros_titulos` (
 --
 
 INSERT INTO `otros_titulos` (`id_otros_titulos`, `detalle_otros_titulos`, `puntaje`) VALUES
-(1, 'Títulos de grado universitario relacionado con la educación.', 2),
-(2, 'Títulos universitario de Profesor, asociado al título universitario e base.', 2),
-(3, 'Título de Técnico Superior relacionado a la carrera y al espacio curricular.', 1.5),
-(4, 'Título de Técnico de Nivel Secundario relacionado a la carrera y al espacio curricular.', 0.5);
+(1, 'Docente de nivel superior universitario.', 2),
+(2, 'Docente de nuvel superior.(No universitario)', 2),
+(3, 'No docente de nivel superior universitario.', 1.5),
+(4, 'No docene de nivel superior.(Intermedio Universitario, Tecnicaturas No Universitarias o denominación', 0.5),
+(5, 'Otros (expedidospor instituciones oficailes contempladas por la formaciónsuperior o equivalente y qu', 0);
 
 -- --------------------------------------------------------
 
@@ -621,9 +753,9 @@ CREATE TABLE `titulos` (
 --
 
 INSERT INTO `titulos` (`id_titulo`, `detalle_titulo`, `puntaje`) VALUES
-(1, 'Título de Nivel Superior de cuatro años o más.', 9),
-(2, 'Título de Nivel Superior de Bibliotecario de 3 año', 7),
-(3, 'Títutlo de Fruticultor Enólogode Escuela de Enolog', 7);
+(1, 'Docente', 9),
+(2, 'Habilitante', 7),
+(3, 'Supletorio', 7);
 
 -- --------------------------------------------------------
 
@@ -680,51 +812,51 @@ CREATE TABLE `valoracion` (
   `j1` int(11) NOT NULL,
   `j2` int(11) NOT NULL,
   `j3` int(11) NOT NULL,
-  `id_materia_valoracion` int(11) NOT NULL,
-  `id_condicion` int(11) NOT NULL
+  `id_materia_valoracion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `valoracion`
 --
 
-INSERT INTO `valoracion` (`id_valoracion`, `dni`, `id_titulo`, `j1`, `j2`, `j3`, `id_materia_valoracion`, `id_condicion`) VALUES
-(156, 28773900, 2, 1, 2, 3, 34, 2),
-(157, 444, 1, 1, 2, 3, 34, 2),
-(158, 666, 1, 1, 2, 3, 34, 1),
-(159, 232, 1, 323, 4343, 343, 1, 1),
-(160, 32887912, 1, 11, 11, 11, 1, 2),
-(161, 6666, 1, 34, 12, 43, 1, 1),
-(162, 555, 1, 343, 2323, 232, 1, 1),
-(163, 4554, 1, 444, 555, 444, 1, 1),
-(164, 222, 1, 445, 666, 22344, 1, 1),
-(182, 4545, 1, 445, 2323, 3434, 1, 1),
-(183, 4545, 1, 445, 2323, 3434, 1, 1),
-(184, 4545, 1, 445, 2323, 3434, 1, 1),
-(185, 5, 0, 6, 4, 7, 0, 0),
-(186, 1, 0, 2, 3, 4, 0, 0),
-(187, 1, 0, 2, 3, 4, 0, 0),
-(188, 1, 0, 2, 3, 4, 0, 0),
-(189, 1, 0, 2, 3, 4, 0, 0),
-(190, 1, 0, 2, 3, 4, 0, 0),
-(191, 1, 0, 2, 3, 4, 0, 0),
-(192, 1, 0, 2, 3, 4, 0, 0),
-(193, 1, 0, 2, 3, 4, 0, 0),
-(194, 1, 0, 2, 3, 4, 0, 0),
-(195, 1, 0, 2, 3, 4, 0, 0),
-(196, 1, 0, 2, 3, 4, 0, 0),
-(197, 1, 0, 2, 3, 4, 0, 0),
-(198, 1, 0, 2, 3, 4, 0, 0),
-(199, 1, 0, 2, 3, 4, 0, 0),
-(200, 1, 0, 2, 3, 4, 0, 0),
-(201, 1, 0, 2, 3, 4, 0, 0),
-(202, 1, 0, 2, 3, 4, 0, 0),
-(203, 1, 0, 2, 3, 4, 0, 0),
-(204, 3, 0, 4, 5, 6, 0, 0),
-(205, 1, 0, 2, 3, 4, 0, 0),
-(206, 30725012, 1, 1, 1, 1, 1, 1),
-(207, 20805413, 0, 1, 2, 3, 0, 0),
-(208, 20130177, 1, 1, 2, 3, 1, 1);
+INSERT INTO `valoracion` (`id_valoracion`, `dni`, `id_titulo`, `j1`, `j2`, `j3`, `id_materia_valoracion`) VALUES
+(156, 28773900, 2, 1, 2, 3, 34),
+(157, 444, 1, 1, 2, 3, 34),
+(158, 666, 1, 1, 2, 3, 34),
+(159, 232, 1, 323, 4343, 343, 1),
+(160, 32887912, 1, 11, 11, 11, 1),
+(161, 6666, 1, 34, 12, 43, 1),
+(162, 555, 1, 343, 2323, 232, 1),
+(163, 4554, 1, 444, 555, 444, 1),
+(164, 222, 1, 445, 666, 22344, 1),
+(182, 4545, 1, 445, 2323, 3434, 1),
+(183, 4545, 1, 445, 2323, 3434, 1),
+(184, 4545, 1, 445, 2323, 3434, 1),
+(206, 30725012, 1, 1, 1, 1, 1),
+(208, 20130177, 1, 1, 2, 3, 1),
+(209, 21, 1, 2, 2, 2, 1),
+(210, 27269774, 1, 1, 2, 3, 1),
+(211, 30725012, 1, 34, 343, 343, 20),
+(212, 27269774, 1, 343, 334, 343, 1),
+(213, 5628000, 1, 12, 23, 34, 2),
+(214, 1111111, 1, 1, 2, 3, 34),
+(215, 232323, 1, 1, 2, 3, 33),
+(216, 232323, 1, 1, 2, 3, 32),
+(217, 232323, 1, 1, 2, 3, 32),
+(218, 99999, 1, 1, 2, 3, 32),
+(219, 27269774, 1, 1, 2, 3, 1),
+(220, 27269774, 1, 1, 2, 3, 1),
+(221, 27269774, 1, 1, 2, 3, 1),
+(222, 27269774, 1, 1, 2, 3, 1),
+(223, 27269773, 1, 1, 2, 3, 36),
+(224, 27269779, 1, 1, 2, 3, 35),
+(225, 27269774, 1, 1, 2, 3, 1),
+(226, 1111111, 2, 1, 2, 3, 1),
+(227, 232323, 1, 1, 2, 3, 1),
+(228, 27269773, 1, 1, 2, 3, 1),
+(229, 99999, 1, 1, 2, 3, 1),
+(230, 27269774, 3, 1, 2, 3, 1),
+(231, 27269774, 2, 1, 2, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -764,7 +896,13 @@ INSERT INTO `valoracion_otros_titulos` (`id_otros_t`, `id_valoracion`, `detalle_
 (17, 206, 'eeee', '2024-08-06', 1),
 (18, 206, 'fffff', '2024-08-14', 3),
 (19, 207, '', '0000-00-00', 1),
-(20, 208, 'sss', '2024-08-12', 1);
+(20, 208, 'sss', '2024-08-12', 1),
+(21, 209, 'dsds', '2024-09-09', 3),
+(22, 210, 'fdfdf', '2024-09-02', 2),
+(23, 211, 'dgd', '2024-09-04', 2),
+(24, 1, '1', '2020-01-01', 1),
+(25, 1, '1', '2020-01-01', 1),
+(26, 1, '1', '2020-01-01', 1);
 
 -- --------------------------------------------------------
 
@@ -788,47 +926,28 @@ INSERT INTO `valoracion_postgrado` (`id_postgrado`, `id_valoracion`, `detalle_va
 (63, 0, 'wewew', '2020-01-01', 2),
 (64, 0, 'wwew', '2020-01-02', 2),
 (65, 0, 'wewe', '2020-01-02', 2),
-(66, 0, 'sds', '2020-01-02', 2),
-(67, 0, 'wee', '2020-01-02', 2),
-(68, 0, 'erere', '2020-01-02', 2),
-(70, 95, 'siplo', '2020-01-02', 4),
-(71, 114, 'wewew', '2020-01-02', 3),
-(72, 114, 'sdsd', '2022-01-02', 2),
-(73, 115, 'maestriiiii', '2020-01-01', 2),
-(74, 115, 'diplo', '2022-01-01', 4),
-(75, 116, 'especiali', '2023-01-01', 3),
-(125, 184, '', '0000-00-00', 1),
-(126, 185, '', '0000-00-00', 1),
-(127, 186, '', '0000-00-00', 1),
-(128, 187, '', '0000-00-00', 1),
-(129, 188, '', '0000-00-00', 1),
-(130, 189, '', '0000-00-00', 1),
-(131, 190, '', '0000-00-00', 1),
-(132, 191, '', '0000-00-00', 1),
-(133, 192, '', '0000-00-00', 1),
-(134, 202, '', '0000-00-00', 1),
-(135, 203, '', '0000-00-00', 1),
-(136, 204, '', '0000-00-00', 1),
-(137, 205, '', '0000-00-00', 1),
-(138, 206, 'wew', '2024-08-07', 2),
-(139, 207, '', '0000-00-00', 1),
-(140, 208, 'ssss', '2024-08-12', 2);
+(148, 217, 'diplo', '2024-10-01', 4),
+(149, 218, 'maestria en ciber', '2020-03-04', 2),
+(150, 219, 'doctorado1', '2024-10-01', 1),
+(151, 219, 'diplomatura', '2024-10-02', 4),
+(152, 220, 'doctorado1', '2024-10-01', 1),
+(153, 220, 'diplomatura2221', '2024-10-03', 4),
+(154, 221, 'mastria1', '2024-10-01', 2),
+(155, 222, 'doctorado12', '2024-10-01', 2),
+(156, 223, 'doctorado1', '2024-10-01', 2),
+(157, 224, 'maestria en cibersegu88888', '2024-10-02', 3),
+(158, 225, 'mastria1', '2024-10-01', 2),
+(159, 226, 'doctorado1', '2024-10-03', 2),
+(160, 227, 'mastria1', '2024-10-01', 2),
+(161, 228, '', '0000-00-00', 1),
+(162, 228, '', '0000-00-00', 1),
+(163, 229, 'mastria1', '2024-10-01', 2),
+(164, 230, 'mastria1', '2024-10-01', 2),
+(165, 231, 'mastria1', '2024-10-01', 2);
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `antecedentes_docentes`
---
-ALTER TABLE `antecedentes_docentes`
-  ADD PRIMARY KEY (`id_ant_doc`);
-
---
--- Indexes for table `antecedentes_laborales`
---
-ALTER TABLE `antecedentes_laborales`
-  ADD PRIMARY KEY (`id_ant_lab`);
 
 --
 -- Indexes for table `capacitacion`
@@ -950,22 +1069,10 @@ ALTER TABLE `valoracion_postgrado`
 --
 
 --
--- AUTO_INCREMENT for table `antecedentes_docentes`
---
-ALTER TABLE `antecedentes_docentes`
-  MODIFY `id_ant_doc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
-
---
--- AUTO_INCREMENT for table `antecedentes_laborales`
---
-ALTER TABLE `antecedentes_laborales`
-  MODIFY `id_ant_lab` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
-
---
 -- AUTO_INCREMENT for table `capacitacion`
 --
 ALTER TABLE `capacitacion`
-  MODIFY `id_capacitacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id_capacitacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `carreras`
@@ -1013,19 +1120,19 @@ ALTER TABLE `dynamic_inputs_table`
 -- AUTO_INCREMENT for table `materias`
 --
 ALTER TABLE `materias`
-  MODIFY `id_materia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_materia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `otros_antecedentes_docentes`
 --
 ALTER TABLE `otros_antecedentes_docentes`
-  MODIFY `id_detalle_ant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_detalle_ant` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `otros_titulos`
 --
 ALTER TABLE `otros_titulos`
-  MODIFY `id_otros_titulos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_otros_titulos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `persons`
@@ -1061,19 +1168,19 @@ ALTER TABLE `titulos_postgrado`
 -- AUTO_INCREMENT for table `valoracion`
 --
 ALTER TABLE `valoracion`
-  MODIFY `id_valoracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=209;
+  MODIFY `id_valoracion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=232;
 
 --
 -- AUTO_INCREMENT for table `valoracion_otros_titulos`
 --
 ALTER TABLE `valoracion_otros_titulos`
-  MODIFY `id_otros_t` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_otros_t` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `valoracion_postgrado`
 --
 ALTER TABLE `valoracion_postgrado`
-  MODIFY `id_postgrado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `id_postgrado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
 
 --
 -- Constraints for dumped tables

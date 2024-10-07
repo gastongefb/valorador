@@ -266,6 +266,8 @@ class PersonController extends Controller
         $datosPaso5 = session()->get('datos_paso5');
         $datosPaso6 = session()->get('datos_paso6');
         $datosPaso7 = session()->get('datos_paso7');
+
+        
       
 
         // Iterar sobre los datos de paso 1
