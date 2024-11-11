@@ -696,7 +696,7 @@ class NuevoController extends BaseController
         //return view('mostrarValoraciones', ['datosTabla1' => $titulo,]);
         
 
-       print_r($titulo);
+       //print_r($titulo);
          
        
           return view('mostrar_valoraciones_porDocente_porMateria4', [
@@ -705,7 +705,7 @@ class NuevoController extends BaseController
 
         ]);
         
-    
+
 
     }
     
