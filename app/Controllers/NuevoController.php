@@ -537,14 +537,22 @@ class NuevoController extends BaseController
                  $suma = $suma + $tot3;
              }
 
-            //PUNTAJE POSTGRADO
-            $val = $valpos->getCodigoById_valoracion($id_va);
-            //$suma = 0;
-            foreach($val as $vv) {
-                $valor = $vv['id_titulo_postgrado'];
-                $puntaje = $Titulopostgrado->getCodigoByPuntaje($valor);
-                $suma=$suma + $puntaje[0]['puntaje']; 
+            //PUNTAJE DE OTROS TÍTULOS    
+            $val_otros_t = new ValoracionOtrosTitulosModel();
+            $datosTabla8 = $val_otros_t ->getCodigoById_valoracion($id_va);//ACÁ PUEDE TRAER VARIOS
+            $otros_t = new OtrosTitulosModel();
+            // Recorrer el array de códigos y obtener los puntajes del modelo TitulosPostgradoModel
+            foreach ($datosTabla8 as $t) {
+            $otros_titulo = $otros_t->find($t['id_otros_titulos']); // Suponiendo que el método find busca por la clave primaria
+              if ($otros_titulo) {
+                 $puntajes8[] = [
+                    'detalle' => $t['detalle_otros_titulos'],
+                    'puntaje' => $otros_titulo['puntaje'],
+                    'fecha' => $t['fecha'],
+                 ];
+              }
             }
+            
 
             
             //PUNTAJE DE TÍTULOS POSTGRADO    
@@ -558,7 +566,8 @@ class NuevoController extends BaseController
               if ($titulo) {
                   $puntajes[] = [
                     'detalle' => $t['detalle_valoracion_postgrado'],
-                    'puntaje' => $titulo['puntaje']
+                    'puntaje' => $titulo['puntaje'],
+                    'fecha' => $t['fecha'],
                   ];
               }
             }
@@ -697,15 +706,17 @@ class NuevoController extends BaseController
         
 
        //print_r($titulo);
+       //print_r($puntajes);
          
        
           return view('mostrar_valoraciones_porDocente_porMateria4', [
             'datosTabla1' => $titulo,
-            'datosTabla2' => $puntajes,
+            'datosTabla2' => $puntajes8,
+            'datosTabla3' => $puntajes,
 
         ]);
         
-
+        
 
     }
     
